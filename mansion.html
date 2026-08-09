@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#050505" name="theme-color"/>
+<title>Moretti Mansion — Collector's Album</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+KR:wght@400;500;600&display=swap');
+:root{--bg:#030303;--paper:#0c0b09;--paper2:#15120e;--ivory:#eee8dc;--muted:#a79e90;--gold:#b88a3d;--gold2:#f2d58b;--line:rgba(214,174,89,.28)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#030303;color:var(--ivory);font-family:'Noto Serif KR',serif}
+body{background:radial-gradient(circle at 50% -10%,rgba(214,174,89,.08),transparent 30%),#030303;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:radial-gradient(circle at 12% 18%,#ffe2a8 0 1px,transparent 1.2px),radial-gradient(circle at 75% 31%,#d6ae62 0 1px,transparent 1.3px);background-size:310px 280px,390px 340px;z-index:-1}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+
+.topbar{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 24px;background:rgba(3,3,3,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font:12px Cinzel,serif;letter-spacing:.18em;color:#d7b66e}
+.nav{display:flex;gap:16px;overflow:auto;white-space:nowrap}
+.nav a{font:9px Cinzel,serif;letter-spacing:.13em;color:var(--muted)}
+.nav a:hover,.nav a.active{color:var(--gold2)}
+.archive-btn{padding:8px 13px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.13em;color:var(--gold2)}
+
+.album-shell{width:min(1540px,calc(100% - 46px));margin:28px auto 72px}
+.album-heading{display:flex;justify-content:space-between;gap:16px;margin:0 8px 13px;color:#8e7956;font:8px Cinzel,serif;letter-spacing:.18em}
+.book{position:relative;height:820px;min-height:820px;perspective:2400px}
+.book-shadow{position:absolute;left:6%;right:6%;bottom:0;height:10%;background:rgba(0,0,0,.76);filter:blur(34px);border-radius:50%}
+.sheet{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transform:translateX(22px) scale(.986);transition:opacity .5s ease,transform .75s cubic-bezier(.2,.75,.2,1)}
+.sheet.is-active{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+.sheet.turn-out{transform-origin:left center;transform:rotateY(-9deg) translateX(-34px) scale(.97);opacity:0}
+
+.cover{height:820px;display:block;position:relative;border:1px solid #4e371b;background:radial-gradient(circle at 50% 28%,rgba(151,105,35,.12),transparent 32%),linear-gradient(135deg,#16120d,#050505 66%);box-shadow:0 48px 100px rgba(0,0,0,.62),inset 0 0 0 8px #070706,inset 0 0 0 9px rgba(213,167,77,.22);cursor:pointer;text-align:center;overflow:hidden}
+.cover:before,.cover:after{content:"";position:absolute;inset:28px;border:1px solid rgba(218,174,86,.4)}
+.cover:after{inset:39px;border-color:rgba(218,174,86,.15)}
+.cover .eyebrow,.cover .chapter,.cover .quote,.cover .hint{position:absolute;left:50%;transform:translateX(-50%);font-family:Cinzel,serif;letter-spacing:.2em;color:#b4935b}
+.cover .eyebrow{top:8%;font-size:9px}
+.cover .chapter{top:16%;font-size:12px}
+.cover h1{position:absolute;top:37%;left:0;right:0;margin:0;font:700 clamp(58px,7.5vw,104px)/.9 Cinzel,serif;letter-spacing:.11em}
+.cover .sub{position:absolute;top:64%;left:0;right:0;font:12px Cinzel,serif;letter-spacing:.22em;color:#b79761}
+.cover .marks{position:absolute;top:72%;left:50%;transform:translateX(-50%);display:flex;gap:7px}
+.cover .marks i{width:34px;height:34px;border:1px solid var(--line);display:grid;place-items:center;font:normal 10px Cinzel,serif;color:#d1ad66}
+.cover .quote{bottom:11%;font-size:9px;white-space:nowrap}
+.cover .hint{bottom:5%;font-size:8px;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.42}}
+
+.spread{height:820px;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(110deg,#11100e,#080808);border:1px solid var(--line);box-shadow:0 42px 90px rgba(0,0,0,.55);overflow:hidden;position:relative}
+.spread:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(218,174,86,.2),transparent);box-shadow:-14px 0 30px rgba(0,0,0,.35),14px 0 30px rgba(0,0,0,.25);z-index:10}
+.photo-page{margin:0;min-width:0;position:relative;background:#050505;padding:36px;display:flex;align-items:center;justify-content:center}
+.photo-page:before{content:"";position:absolute;inset:27px;border:1px solid rgba(218,174,86,.25);z-index:2;pointer-events:none}
+.photo-frame{width:100%;height:100%;display:grid;place-items:center;overflow:hidden;background:#050505}
+.photo-frame img{width:100%;height:100%;object-fit:contain;filter:brightness(.91) contrast(1.03) saturate(.92)}
+.photo-label{position:absolute;left:52px;bottom:30px;font:7px Cinzel,serif;letter-spacing:.16em;color:#9d8050;background:rgba(5,5,5,.58);padding:7px 9px;border:1px solid rgba(218,174,86,.18)}
+
+.text-page{padding:64px 68px;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(circle at 20% 20%,rgba(213,167,77,.06),transparent 26%);position:relative}
+.kicker{font:9px Cinzel,serif;letter-spacing:.22em;color:#b7904f}
+.text-page h2{font:600 clamp(34px,4vw,66px)/1.02 Cinzel,serif;letter-spacing:.055em;margin:16px 0 8px}
+.kr-title{font-size:14px;color:#c9c1b7;margin-bottom:8px}
+.rule{width:64%;height:1px;margin:22px 0;background:linear-gradient(90deg,#d6ad60,transparent)}
+.lead{font-size:13px;line-height:2.05;color:#d2c8ba;word-break:keep-all;margin:0 0 18px}
+.caption{font-size:11px;line-height:1.9;color:#9e9588;margin:0}
+dl{display:grid;grid-template-columns:120px 1fr;margin:28px 0 0;border-top:1px solid var(--line)}
+dt,dd{margin:0;padding:10px 0;border-bottom:1px solid var(--line)}
+dt{font:8px Cinzel,serif;letter-spacing:.13em;color:#c5a15c}
+dd{font:10px Cinzel,serif;letter-spacing:.08em;color:#dfd6c9}
+.folio{position:absolute;right:38px;bottom:26px;font:7px Cinzel,serif;letter-spacing:.16em;color:#70665a}
+
+.page-zone{position:absolute;z-index:30;top:0;bottom:0;width:9%;border:0;background:transparent;font-size:54px;color:rgba(238,211,150,.18);cursor:pointer;transition:.3s}
+.page-zone:hover{color:#e6c276;text-shadow:0 0 18px rgba(213,169,84,.25)}
+.page-zone:disabled{opacity:.05;cursor:default;pointer-events:none}
+.page-zone-left{left:0} .page-zone-right{right:0}
+.page-counter{position:absolute;z-index:31;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font:8px Cinzel,serif;letter-spacing:.16em;color:#7f7465;pointer-events:none}
+.page-counter i{width:32px;height:1px;background:#6c5531}
+.instruction{text-align:center;color:#766c60;font-size:10px;margin:15px 0 0}
+.footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
+.footer-nav a{padding:11px 14px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.12em}
+
+@media(max-width:1050px){
+  .book{height:1080px;min-height:1080px}
+  .cover{height:1080px}
+  .spread{height:1080px;grid-template-columns:1fr;grid-template-rows:55% 45%}
+  .spread:after{display:none}
+  .photo-page{padding:26px}
+  .text-page{padding:34px 42px}
+}
+@media(max-width:650px){
+  .topbar{padding:11px 12px}
+  .brand{display:none}
+  .album-shell{width:calc(100% - 18px);margin-top:16px}
+  .album-heading{display:none}
+  .book{height:940px;min-height:940px}
+  .cover{height:940px}
+  .cover h1{font-size:54px}
+  .cover .quote{display:none}
+  .spread{height:940px;grid-template-rows:48% 52%}
+  .photo-page{padding:18px}
+  .text-page{padding:24px 22px}
+  .text-page h2{font-size:30px}
+  .lead{font-size:11px;line-height:1.8}
+  .caption{font-size:10px;line-height:1.75}
+  dl{grid-template-columns:90px 1fr}
+  .page-zone{width:14%}
+}
+@media(prefers-reduced-motion:reduce){
+  .sheet{transition:none}
+}
+
+
+/* ===== MANSION ALBUM FIX =====
+   The album cover is a <button>. Without an explicit width, the absolutely
+   positioned title elements do not contribute to intrinsic width, so some
+   browsers collapse the cover into a thin strip. */
+.cover{
+  width:100%!important;
+  min-width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  border-radius:0!important;
+}
+.sheet{
+  width:100%!important;
+  min-width:0!important;
+}
+.book{
+  width:100%!important;
+}
+
+.sound-toggle{
+ position:fixed;right:16px;bottom:16px;z-index:999;width:36px;height:36px;
+ border:1px solid rgba(214,174,89,.28);border-radius:50%;
+ background:rgba(5,5,5,.78);color:#d8b86e;display:grid;place-items:center;
+ cursor:pointer;font-size:14px;opacity:.72;backdrop-filter:blur(8px);transition:.2s ease
+}
+.sound-toggle:hover{opacity:1;color:#f0d18a;border-color:rgba(240,209,138,.5)}
+@media(max-width:650px){.sound-toggle{right:10px;bottom:10px;width:33px;height:33px;font-size:13px}}
+
+
+/* ===== MANSION V3 · FIT TO SCREEN TEST =====
+   데스크톱에서는 앨범 한 장 전체가 브라우저 안에 들어오도록
+   원본 1540×820 비율을 유지한 채 통째로 축소한다. */
+@media (min-width:801px){
+  .album-shell{
+    width:1540px!important;
+    max-width:none!important;
+    margin-top:18px!important;
+    margin-bottom:22px!important;
+    transform-origin:top center;
+  }
+
+  #mansionBook{
+    width:1540px!important;
+    height:820px!important;
+    min-height:820px!important;
+    transform-origin:top center;
+  }
+
+  #mansionBook .cover,
+  #mansionBook .spread{
+    height:820px!important;
+  }
+
+  /* JS가 실제 축척에 맞춰 shell 높이를 조정한다. */
+  body.fit-mansion .album-shell{
+    height:var(--mansion-shell-height,820px);
+  }
+
+  body.fit-mansion #mansionBook{
+    transform:scale(var(--mansion-fit,1));
+  }
+
+  /* 축소된 책이 가운데 놓이도록 보정 */
+  body.fit-mansion .album-shell{
+    width:calc(1540px * var(--mansion-fit,1))!important;
+  }
+
+  body.fit-mansion #mansionBook{
+    margin-left:calc((1540px * var(--mansion-fit,1) - 1540px) / 2);
+  }
+
+  .footer-nav{
+    margin-top:10px!important;
+  }
+}
+
+
+/* ===== MORETTI OFFICIAL ARTBOOK · FINAL VIEWPORT FIT ===== */
+@media (min-width:901px){
+  html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden!important;
+  }
+  body.moretti-final-fit main{
+    position:absolute!important;
+    left:50%!important;
+    top:var(--moretti-fit-top,56px)!important;
+    transform:translateX(-50%) scale(var(--moretti-page-scale,1))!important;
+    transform-origin:top center!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+}
+
+
+/* ===== MORETTI MANSION · GATE EMBLEM ANIMATION ===== */
+.mansion-cover-emblem{
+  position:absolute;
+  left:50%;
+  top:18.5%;
+  transform:translateX(-50%);
+  width:220px;
+  height:185px;
+  overflow:hidden;
+  z-index:4;
+  pointer-events:none;
+  filter:drop-shadow(0 13px 22px rgba(0,0,0,.52));
+}
+.mansion-emblem-frame{
+  position:absolute;
+  left:0;
+  top:0;
+  width:220px;
+  height:220px;
+  object-fit:contain;
+  display:block;
+  opacity:0;
+  will-change:opacity,filter;
+}
+.mansion-cover-emblem .emblem-close{
+  animation:mansionGateClosed 6.4s ease-in-out infinite;
+}
+.mansion-cover-emblem .emblem-half{
+  animation:mansionGateHalf 6.4s ease-in-out infinite;
+}
+.mansion-cover-emblem .emblem-open{
+  animation:mansionGateOpen 6.4s ease-in-out infinite;
+}
+
+@keyframes mansionGateClosed{
+  0%,16%{opacity:1;filter:brightness(.94)}
+  25%,73%{opacity:0;filter:brightness(1)}
+  84%,100%{opacity:1;filter:brightness(.94)}
+}
+@keyframes mansionGateHalf{
+  0%,14%{opacity:0}
+  22%,30%{opacity:1}
+  38%,62%{opacity:0}
+  70%,78%{opacity:1}
+  88%,100%{opacity:0}
+}
+@keyframes mansionGateOpen{
+  0%,29%{opacity:0;filter:brightness(.96)}
+  39%,61%{opacity:1;filter:brightness(1.07) drop-shadow(0 0 7px rgba(221,178,85,.18))}
+  71%,100%{opacity:0;filter:brightness(.96)}
+}
+
+/* Give the emblem its own band so it never collides with the title. */
+.cover h1{
+  top:48%!important;
+  font-size:clamp(54px,6vw,82px)!important;
+  line-height:.88!important;
+}
+.cover .sub{
+  top:69%!important;
+}
+.cover .quote{
+  bottom:10.5%!important;
+}
+.cover .hint{
+  bottom:4.5%!important;
+}
+
+@media(max-width:1050px){
+  .mansion-cover-emblem{
+    top:18%;
+    width:195px;
+    height:165px;
+  }
+  .mansion-emblem-frame{
+    width:195px;
+    height:195px;
+  }
+  .cover h1{
+    top:43%!important;
+    font-size:64px!important;
+  }
+  .cover .sub{
+    top:63%!important;
+  }
+}
+
+@media(max-width:650px){
+  .mansion-cover-emblem{
+    top:17%;
+    width:165px;
+    height:140px;
+  }
+  .mansion-emblem-frame{
+    width:165px;
+    height:165px;
+  }
+  .cover h1{
+    top:39%!important;
+    font-size:50px!important;
+  }
+  .cover .sub{
+    top:58.5%!important;
+    font-size:9px!important;
+  }
+  .cover .hint{
+    bottom:4%!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mansion-cover-emblem .emblem-close{
+    animation:none!important;
+    opacity:1!important;
+  }
+  .mansion-cover-emblem .emblem-half,
+  .mansion-cover-emblem .emblem-open{
+    animation:none!important;
+    opacity:0!important;
+  }
+}
+
+</style>
+</head>
+<body>
+<!-- Mansion V4: 14 local WebP images + Fit-to-Screen + existing shared AudioManager -->
+<script src="js/audio.js"></script>
+<button id="soundToggle" class="sound-toggle" type="button" aria-label="효과음 켜기 또는 끄기">🔊</button>
+<header class="topbar">
+<a class="brand" href="index.html">⚜ MORETTI FAMILY</a>
+<nav class="nav">
+<a href="dante.html">DANTE</a>
+<a href="pillars.html">SEVEN PILLARS</a>
+<a href="family.html">FAMILY</a>
+<a class="active" href="mansion.html">MANSION</a>
+<a href="classified.html">CLASSIFIED</a>
+<a href="letter.html">SEALED LETTER</a>
+</nav>
+<a class="archive-btn" href="https://drive.google.com/file/d/1KPtaasyuG1a4rPSy5iMXDtZoOibZ9etT/view?usp=sharing" rel="noopener" target="_blank">Ω OFFICIAL ARCHIVE</a>
+</header>
+<main class="album-shell">
+<div class="album-heading">
+<span>MORETTI OFFICIAL ARTBOOK · COLLECTOR'S EDITION</span>
+<span>RESIDENCE ARCHIVE · LEVEL Ω</span>
+</div>
+<section class="book" data-page="0" id="mansionBook">
+<div class="book-shadow"></div>
+<article aria-hidden="false" class="sheet is-active">
+<button aria-label="저택 아트북 열기" class="cover" data-open-book="" type="button">
+<span class="eyebrow">MORETTI OFFICIAL ARTBOOK</span>
+<span class="chapter">CHAPTER · RESIDENCE ARCHIVE</span>
+<div class="mansion-cover-emblem" aria-hidden="true">
+  <img class="mansion-emblem-frame emblem-close" src="assets/images/mansion/mansion-emblem-close.png" alt=""/>
+  <img class="mansion-emblem-frame emblem-half" src="assets/images/mansion/mansion-emblem-half-open.png" alt=""/>
+  <img class="mansion-emblem-frame emblem-open" src="assets/images/mansion/mansion-emblem-open.png" alt=""/>
+</div>
+<h1>MORETTI<br/>MANSION</h1>
+<span class="sub">14 ARCHITECTURAL RECORDS</span>
+
+<span class="quote">“Every corridor carries generations of memory.”</span>
+<span class="hint">CLICK TO OPEN THE ALBUM</span>
+</button>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="저택 외부 전경" src="assets/images/mansion/mansion-01-estate.webp" decoding="async" fetchpriority="high"/>
+</div>
+<span class="photo-label">RESIDENCE 01 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 01</div>
+<h2>THE ESTATE</h2>
+<div class="kr-title">저택 외부 전경</div>
+<div class="rule"></div>
+<p class="lead">철문 너머로 이어지는 모레티 저택의 외부 전경. 어두운 석재와 대칭적인 파사드, 창문 안쪽의 금빛 조명이 차가운 외관과 따뜻한 내부의 대비를 만든다.</p>
+<p class="caption">가족의 거처이자 모레티 가문의 본부라는 이중적인 성격을 한 장에 담은 대표 전경.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-01</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 01</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="메인홀" src="assets/images/mansion/mansion-02-main-hall.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 02 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 02</div>
+<h2>GRAND HALL</h2>
+<div class="kr-title">메인홀</div>
+<div class="rule"></div>
+<p class="lead">저택의 중심 동선이 시작되는 메인홀. 높은 천장과 넓은 개방감, 정돈된 대칭 구성이 방문객에게 첫인상을 남기도록 설계된 공간이다.</p>
+<p class="caption">공식 아카이브에서는 지휘 시설(Command Center)로 분류되는 공간.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-02</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 02</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="가문 응접실" src="assets/images/mansion/mansion-03-reception.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 03 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 03</div>
+<h2>RECEPTION SALON</h2>
+<div class="kr-title">가문 응접실</div>
+<div class="rule"></div>
+<p class="lead">외부 인사나 가까운 손님을 맞이하는 격식 있는 응접 공간. 무거운 가구와 절제된 장식이 사적인 집과 공식 공간의 경계를 보여 준다.</p>
+<p class="caption">화려함보다 통제된 품위와 거리감을 강조한 접견용 공간.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-03</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 03</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="라운지" src="assets/images/mansion/mansion-04-lounge.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 04 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 04</div>
+<h2>FAMILY LOUNGE</h2>
+<div class="kr-title">라운지</div>
+<div class="rule"></div>
+<p class="lead">업무 공간보다 한결 부드러운 분위기의 라운지. 넓은 좌석 배치와 낮은 조도가 가족과 가까운 사람들이 머무는 휴식 공간의 성격을 만든다.</p>
+<p class="caption">공식 기록상 Executive Reception에 해당하는 접견·휴식 공간.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-04</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 04</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="다이닝홀" src="assets/images/mansion/mansion-05-dining.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 05 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 05</div>
+<h2>DINING HALL</h2>
+<div class="kr-title">다이닝홀</div>
+<div class="rule"></div>
+<p class="lead">긴 테이블을 중심으로 구성된 다이닝홀. 가족 식사뿐 아니라 공식적인 만찬과 중요한 모임을 수용할 수 있도록 넉넉한 규모와 대칭 구조를 갖춘다.</p>
+<p class="caption">공식 아카이브에서는 Executive Dining Area로 기록된다.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-05</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 05</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="도서관" src="assets/images/mansion/mansion-06-library.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 06 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 06</div>
+<h2>GRAND LIBRARY</h2>
+<div class="kr-title">도서관</div>
+<div class="rule"></div>
+<p class="lead">높은 서가와 깊은 목재 톤이 중심이 되는 역사 기록 보관 공간. 조명을 낮게 유지해 오래된 문헌과 가문의 기록이 가진 무게를 강조한다.</p>
+<p class="caption">공식 아카이브에서 Historical Archive로 분류되는 도서관.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-06</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 06</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="단테 오피스" src="assets/images/mansion/mansion-07-dante-office.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 07 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 07</div>
+<h2>DANTE'S OFFICE</h2>
+<div class="kr-title">단테 오피스</div>
+<div class="rule"></div>
+<p class="lead">제1기둥 전용 집무실. 넓은 책상과 절제된 장식, 정면성을 강조한 구조가 단테의 개인 공간이면서 동시에 최고 의사결정 공간임을 드러낸다.</p>
+<p class="caption">공식 아카이브의 First Pillar Office.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-07</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 07</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="지하기록실" src="assets/images/mansion/mansion-08-underground-archive.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 08 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 08</div>
+<h2>UNDERGROUND ARCHIVE</h2>
+<div class="kr-title">지하기록실</div>
+<div class="rule"></div>
+<p class="lead">지하 깊숙한 곳에 위치한 기밀 기록 보관 공간. 폐쇄적인 구조와 낮은 조도는 일상적인 생활 공간과 완전히 분리된 보안 구역의 인상을 만든다.</p>
+<p class="caption">공식 아카이브에서는 Classified Archive로 분류된다.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-08</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 08</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="트레이닝룸" src="assets/images/mansion/mansion-09-training-hall.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 09 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 09</div>
+<h2>TRAINING ROOM</h2>
+<div class="kr-title">트레이닝룸</div>
+<div class="rule"></div>
+<p class="lead">실전 훈련을 위한 기능 중심의 공간. 장식보다 넓은 동선과 비어 있는 바닥 면적이 먼저 보이도록 구성되어 저택 내부의 다른 공간과 분위기가 확연히 다르다.</p>
+<p class="caption">공식 아카이브의 Combat Training Facility.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-09</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 09</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="정원" src="assets/images/mansion/mansion-10-garden.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 10 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 10</div>
+<h2>FORMAL GARDEN</h2>
+<div class="kr-title">정원</div>
+<div class="rule"></div>
+<p class="lead">건물의 엄격한 직선 구조와 대비되는 외부 정원. 정돈된 식재와 산책 동선이 저택 안에서 가장 여유로운 시각적 리듬을 만든다.</p>
+<p class="caption">공식 아카이브에서는 Private Courtyard로 기록되는 전용 정원.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-10</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 10</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="게스트룸" src="assets/images/mansion/mansion-11-guest-room.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 11 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 11</div>
+<h2>GUEST SUITE</h2>
+<div class="kr-title">게스트룸</div>
+<div class="rule"></div>
+<p class="lead">장기 체류 손님을 위한 독립형 객실. 저택 전체의 블랙·골드 분위기를 유지하면서도 침실 특유의 부드러운 직물과 조명으로 긴장을 낮춘다.</p>
+<p class="caption">공식 공간과 사적 생활 공간 사이에서 가장 중립적인 성격을 가진 객실.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-11</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 11</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="단테 침실" src="assets/images/mansion/mansion-12-dante-bedroom.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 12 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 12</div>
+<h2>THE HEAD'S PRIVATE SUITE</h2>
+<div class="kr-title">단테 침실</div>
+<div class="rule"></div>
+<p class="lead">단테의 개인 생활 공간. 전체적인 색조는 여전히 어둡지만 집무실보다 부드러운 재질과 낮은 조명을 사용해 공적인 권위와 사적인 휴식의 차이를 보여 준다.</p>
+<p class="caption">업무용 공간과 달리 개인적인 정적과 휴식에 초점을 맞춘 비공식 기록.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-12</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 12</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="가문 전용 스파" src="assets/images/mansion/mansion-13-private-spa.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 13 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 13</div>
+<h2>PRIVATE SPA</h2>
+<div class="kr-title">가문 전용 스파</div>
+<div class="rule"></div>
+<p class="lead">저택 내부의 휴식 시설. 석재와 물, 간접 조명이 중심이 되어 다른 공간보다 시각적 정보량을 낮추고 안정적인 분위기를 만든다.</p>
+<p class="caption">외부 손님을 위한 시설이 아니라 가족의 휴식을 위한 사적 공간으로 연출된 기록.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-13</dd>
+<dt>Classification</dt><dd>PRIVATE RESIDENCE</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 13</div>
+</section>
+</div>
+</article>
+
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="photo-page">
+<div class="photo-frame">
+<img alt="가족예배당" src="assets/images/mansion/mansion-14-family-chapel.webp" loading="lazy" decoding="async"/>
+</div>
+<span class="photo-label">RESIDENCE 14 · OFFICIAL VISUAL RECORD</span>
+</figure>
+<section class="text-page">
+<div class="kicker">MORETTI MANSION · RESIDENCE 14</div>
+<h2>FAMILY CHAPEL</h2>
+<div class="kr-title">가족예배당</div>
+<div class="rule"></div>
+<p class="lead">모레티 가문만을 위한 사적인 예배와 의식의 공간. 높은 아치와 촛불, 어두운 석재가 저택의 다른 공간보다 더욱 엄숙하고 정적인 분위기를 만든다.</p>
+<p class="caption">공식 아카이브에서 가문 의식 공간(Private Ceremonial Area)으로 분류되는 가족 전용 예배당.</p>
+<dl>
+<dt>Archive ID</dt><dd>MM-Ω-14</dd>
+<dt>Classification</dt><dd>PRIVATE CEREMONIAL AREA</dd>
+<dt>Clearance</dt><dd>LEVEL Ω</dd>
+<dt>Status</dt><dd>ACTIVE RECORD</dd>
+</dl>
+<div class="folio">MORETTI OFFICIAL ARTBOOK · 14</div>
+</section>
+</div>
+</article>
+
+<button aria-label="이전 페이지" class="page-zone page-zone-left" id="mansionPrev" type="button">‹</button>
+<button aria-label="다음 페이지" class="page-zone page-zone-right" id="mansionNext" type="button">›</button>
+<div class="page-counter"><span id="mansionCurrent">COVER</span><i></i><span>14</span></div>
+</section>
+
+<div class="footer-nav">
+<a href="pillars.html">← SEVEN PILLARS</a>
+<a href="classified.html">NEXT · CLASSIFIED →</a>
+</div>
+</main>
+<script>
+(() => {
+  const A = window.AudioManager || null;
+  if(A) A.configure({basePath:'assets/sounds/'});
+  const book = document.querySelector('#mansionBook');
+  const sheets = [...book.querySelectorAll('.sheet')];
+  const prev = document.querySelector('#mansionPrev');
+  const next = document.querySelector('#mansionNext');
+  const current = document.querySelector('#mansionCurrent');
+  let page = 0;
+  let locked = false;
+  let queued = null;
+  let touchX = null;
+
+  const label = () => page === 0 ? 'COVER' : String(page).padStart(2,'0');
+  const sync = () => {
+    current.textContent = label();
+    prev.disabled = page <= 0;
+    next.disabled = false;
+    book.dataset.page = String(page);
+  };
+
+  const finish = () => {
+    locked = false;
+    if(queued !== null){
+      const target = queued;
+      queued = null;
+      requestAnimationFrame(() => show(target, target > page ? 1 : -1));
+    }
+  };
+
+  const show = (requested, dir = 1) => {
+    if(requested >= sheets.length){
+      document.body.style.transition='opacity .45s ease';
+      document.body.style.opacity='0';
+      setTimeout(()=>{ location.href='classified.html'; },450);
+      return;
+    }
+    const target = Math.max(0, Math.min(sheets.length - 1, requested));
+    if(target === page) return;
+    if(locked){ queued = target; return; }
+    locked = true;
+
+    const old = sheets[page];
+    const fresh = sheets[target];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    old.classList.add('turn-out');
+
+    setTimeout(() => {
+      old.classList.remove('is-active','turn-out');
+      old.setAttribute('aria-hidden','true');
+      fresh.classList.add('is-active');
+      fresh.setAttribute('aria-hidden','false');
+
+      if(!reduced && typeof fresh.animate === 'function'){
+        try {
+          fresh.animate(
+            dir > 0
+              ? [{transform:'rotateY(7deg) translateX(24px)',opacity:.2},{transform:'none',opacity:1}]
+              : [{transform:'rotateY(-7deg) translateX(-24px)',opacity:.2},{transform:'none',opacity:1}],
+            {duration:520,easing:'cubic-bezier(.2,.75,.2,1)'}
+          );
+        } catch(_) {}
+      }
+
+      page = target;
+      sync();
+      setTimeout(finish, reduced ? 0 : 220);
+    }, reduced ? 0 : 260);
+  };
+
+  sync();
+
+  document.querySelector('[data-open-book]').addEventListener('click', e => {
+    e.preventDefault();
+    if(A){
+      A.unlock();
+      A.openBook();
+    }
+    show(1,1);
+  });
+  prev.addEventListener('click', e => {
+    e.preventDefault();
+    if(A) A.mansionTurn();
+    show(page-1,-1);
+  });
+  next.addEventListener('click', e => {
+    e.preventDefault();
+    if(A) A.mansionTurn();
+    show(page+1,1);
+  });
+
+  book.addEventListener('click', e => {
+    if(e.target.closest('a,button')) return;
+    const r = book.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    if(x > r.width * .54){
+      if(A) A.mansionTurn();
+      show(page+1,1);
+    }else if(x < r.width * .46){
+      if(A) A.mansionTurn();
+      show(page-1,-1);
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'ArrowRight'){
+      e.preventDefault();
+      if(A) A.mansionTurn();
+      show(page+1,1);
+    }
+    if(e.key === 'ArrowLeft'){
+      e.preventDefault();
+      if(A) A.mansionTurn();
+      show(page-1,-1);
+    }
+  });
+
+  book.addEventListener('touchstart', e => {
+    touchX = e.changedTouches?.[0]?.clientX ?? null;
+  }, {passive:true});
+
+  book.addEventListener('touchend', e => {
+    if(touchX === null) return;
+    const end = e.changedTouches?.[0]?.clientX;
+    if(typeof end !== 'number'){ touchX = null; return; }
+    const dx = end - touchX;
+    touchX = null;
+    if(Math.abs(dx) < 45) return;
+    if(A) A.mansionTurn();
+    if(dx < 0) show(page+1,1);
+    else show(page-1,-1);
+  }, {passive:true});
+})();
+</script>
+<script>
+if(window.AudioManager){
+  AudioManager.configure({basePath:'assets/sounds/'});
+  AudioManager.bindMuteButton('#soundToggle');
+}
+</script>
+
+<script>
+(() => {
+  const DESKTOP_BREAKPOINT=801;
+  const BASE_W=1540;
+  const BASE_H=820;
+
+  function fitMansionAlbum(){
+    const body=document.body;
+    const shell=document.querySelector('.album-shell');
+    const book=document.querySelector('#mansionBook');
+    const topbar=document.querySelector('.topbar');
+
+    if(!shell || !book) return;
+
+    if(window.innerWidth < DESKTOP_BREAKPOINT){
+      body.classList.remove('fit-mansion');
+      body.style.removeProperty('--mansion-fit');
+      body.style.removeProperty('--mansion-shell-height');
+      book.style.removeProperty('margin-left');
+      return;
+    }
+
+    const topH=topbar ? topbar.getBoundingClientRect().height : 0;
+
+    // 좌우 여백과 상하 안전 여백을 남긴다.
+    const availableW=Math.max(320,window.innerWidth-44);
+    const availableH=Math.max(360,window.innerHeight-topH-54);
+
+    // 절대 확대하지 않고, 화면이 작을 때만 축소.
+    const scale=Math.min(
+      1,
+      availableW/BASE_W,
+      availableH/BASE_H
+    );
+
+    body.classList.add('fit-mansion');
+    body.style.setProperty('--mansion-fit',scale.toFixed(4));
+    body.style.setProperty('--mansion-shell-height',(BASE_H*scale)+'px');
+  }
+
+  window.addEventListener('load',fitMansionAlbum);
+  window.addEventListener('resize',fitMansionAlbum);
+
+  // 웹폰트가 늦게 로드되어 상단바 높이가 달라지는 경우 한 번 더 보정.
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(fitMansionAlbum);
+  }
+})();
+</script>
+
+
+<script>
+(() => {
+  const book=document.querySelector('#mansionBook');
+  if(!book) return;
+  const sheets=[...book.querySelectorAll('.sheet')];
+
+  function warmImage(src){
+    if(!src) return;
+    const img=new Image();
+    img.decoding='async';
+    img.src=src;
+  }
+
+  // Warm only the first visual at startup so initial load stays light.
+  const first=sheets[1]?.querySelector('img');
+  if(first) warmImage(first.currentSrc || first.src);
+
+  // Observe active sheet changes and warm the next two records.
+  const observer=new MutationObserver(()=>{
+    const activeIndex=sheets.findIndex(s=>s.classList.contains('is-active'));
+    for(let i=activeIndex+1;i<=Math.min(activeIndex+2,sheets.length-1);i++){
+      const img=sheets[i]?.querySelector('img');
+      if(img) warmImage(img.getAttribute('src'));
+    }
+  });
+
+  sheets.forEach(s=>observer.observe(s,{attributes:true,attributeFilter:['class']}));
+})();
+</script>
+
+<script src="js/final-fit.js"></script>
+</body>
+</html>

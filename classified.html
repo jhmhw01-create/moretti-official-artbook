@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#050505" name="theme-color"/><title>Classified Archive — Moretti Official Artbook</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+KR:wght@400;500;600&display=swap');
+:root{--gold:#b88a3d;--gold2:#f0d18a;--ivory:#eee8dc;--muted:#9e9588;--line:rgba(214,174,89,.28)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#030303;color:var(--ivory);font-family:'Noto Serif KR',serif}
+body{background:radial-gradient(circle at 50% -10%,rgba(214,174,89,.08),transparent 30%),#030303;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.topbar{position:sticky;top:0;z-index:70;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 24px;background:rgba(3,3,3,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font:12px Cinzel,serif;letter-spacing:.18em;color:#d8b86e}
+.nav{display:flex;gap:16px;overflow:auto;white-space:nowrap}
+.nav a{font:9px Cinzel,serif;letter-spacing:.13em;color:var(--muted)} .nav a:hover,.nav a.active{color:var(--gold2)}
+.archive-btn{padding:8px 13px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.13em;color:var(--gold2)}
+.shell{width:min(1500px,calc(100% - 44px));margin:34px auto 80px}
+.spread{min-height:760px;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(135deg,#13110e,#080807 70%);border:1px solid var(--line);box-shadow:0 40px 96px rgba(0,0,0,.55);overflow:hidden;position:relative}
+.spread:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(218,174,86,.2),transparent);box-shadow:-12px 0 26px rgba(0,0,0,.36),12px 0 26px rgba(0,0,0,.26);z-index:8}
+.page{position:relative;padding:clamp(42px,4.7vw,76px);min-width:0}
+.page.dark{background:radial-gradient(circle at 28% 18%,rgba(213,167,77,.06),transparent 30%),#090908}
+.kicker{font:9px Cinzel,serif;letter-spacing:.23em;color:#b7904f}
+.display{margin:18px 0 20px;font:600 clamp(48px,6vw,88px)/.92 Cinzel,serif;letter-spacing:.075em;color:#e5c06f}
+.quote{font:italic clamp(22px,2.2vw,31px)/1.5 'Cormorant Garamond',serif;color:#e8dfd0}
+.kr{display:block;margin-top:16px;font-size:12px;line-height:1.9;color:#aaa197}
+.rule{width:64%;height:1px;margin:24px 0;background:linear-gradient(90deg,#d6ad60,transparent)}
+.page-no{position:absolute;right:28px;bottom:22px;font:8px Cinzel,serif;color:#6f665a}
+.footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
+.footer-nav a{padding:11px 14px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.12em}
+@media(max-width:900px){.spread{grid-template-columns:1fr}.spread:after{display:none}.page{min-height:620px}}
+@media(max-width:650px){.topbar{padding:11px 12px}.brand{display:none}.shell{width:calc(100% - 18px);margin-top:16px}.page{padding:28px 20px}}
+
+.terminal{margin-top:26px;border:1px solid rgba(214,174,89,.32);background:#060706;box-shadow:inset 0 0 0 7px #030303,inset 0 0 0 8px rgba(214,174,89,.08);padding:22px;min-height:480px;font-family:'Courier New',monospace}
+.terminal-head{display:flex;justify-content:space-between;gap:20px;color:#d7b867;font-size:11px;letter-spacing:.12em}
+.terminal-percent{font-weight:700;color:#f0d18a}
+.terminal-progress{height:5px;margin:14px 0 22px;background:#17130d;border:1px solid rgba(214,174,89,.18);overflow:hidden}
+.terminal-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7a571e,#e6c16d,#fff0ad);box-shadow:0 0 12px rgba(239,201,111,.35);transition:width .08s linear}
+.terminal-screen{white-space:pre-wrap;font-size:12px;line-height:1.9;color:#b8b8b8;min-height:310px}
+.terminal-cursor{color:#dfbd70;animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.terminal.complete{box-shadow:inset 0 0 0 7px #030303,inset 0 0 0 8px rgba(214,174,89,.11),0 0 32px rgba(214,174,89,.05)}
+
+
+/* ===== FINAL CLASSIFIED STAMP ===== */
+.page.right{
+  overflow:hidden;
+}
+.confidential-stamp-overlay{
+  position:absolute;
+  inset:0;
+  z-index:30;
+  display:grid;
+  place-items:center;
+  pointer-events:none;
+  opacity:0;
+  visibility:hidden;
+  background:rgba(3,3,3,.08);
+}
+.confidential-stamp-overlay img{
+  width:min(72%,560px);
+  height:auto;
+  transform:scale(2.2) rotate(-4deg);
+  opacity:0;
+  filter:
+    blur(5px)
+    drop-shadow(0 18px 30px rgba(0,0,0,.50))
+    drop-shadow(0 0 18px rgba(225,181,84,.18));
+}
+.confidential-stamp-overlay.stamped{
+  visibility:visible;
+  opacity:1;
+}
+.confidential-stamp-overlay.stamped img{
+  animation:classifiedStampHit .58s cubic-bezier(.14,.84,.22,1) forwards,
+            classifiedStampInk .75s .58s ease forwards;
+}
+.page.right.stamp-shake{
+  animation:stampPageShake .22s linear;
+}
+@keyframes classifiedStampHit{
+  0%{
+    opacity:0;
+    transform:scale(2.2) rotate(-4deg);
+    filter:blur(5px) drop-shadow(0 18px 30px rgba(0,0,0,.50));
+  }
+  56%{
+    opacity:1;
+    transform:scale(.90) rotate(-4deg);
+    filter:blur(0) drop-shadow(0 6px 12px rgba(0,0,0,.55));
+  }
+  72%{
+    transform:scale(1.06) rotate(-4deg);
+  }
+  100%{
+    opacity:.96;
+    transform:scale(1) rotate(-4deg);
+    filter:blur(0) drop-shadow(0 10px 18px rgba(0,0,0,.48));
+  }
+}
+@keyframes classifiedStampInk{
+  from{opacity:.96;filter:contrast(1) brightness(1)}
+  to{opacity:.90;filter:contrast(1.08) brightness(.92)}
+}
+@keyframes stampPageShake{
+  0%,100%{transform:translate(0,0)}
+  22%{transform:translate(-4px,2px)}
+  45%{transform:translate(3px,-2px)}
+  68%{transform:translate(-2px,1px)}
+  85%{transform:translate(1px,0)}
+}
+@media(max-width:650px){
+  .confidential-stamp-overlay img{width:82%}
+}
+
+.sound-toggle{
+ position:fixed;right:16px;bottom:16px;z-index:999;width:36px;height:36px;
+ border:1px solid rgba(214,174,89,.28);border-radius:50%;
+ background:rgba(5,5,5,.78);color:#d8b86e;display:grid;place-items:center;
+ cursor:pointer;font-size:14px;opacity:.72;backdrop-filter:blur(8px);transition:.2s ease
+}
+.sound-toggle:hover{opacity:1;color:#f0d18a;border-color:rgba(240,209,138,.5)}
+@media(max-width:650px){.sound-toggle{right:10px;bottom:10px;width:33px;height:33px;font-size:13px}}
+
+
+/* ===== CLASSIFIED → SEALED LETTER ===== */
+.page.right.ready-next,
+#stamp.stamped{
+  cursor:pointer;
+}
+
+
+#securityTerminal{cursor:pointer}
+#securityTerminal.complete{cursor:default}
+
+/* ===== MORETTI OFFICIAL ARTBOOK · FINAL VIEWPORT FIT ===== */
+@media (min-width:901px){
+  html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden!important;
+  }
+  body.moretti-final-fit main{
+    position:absolute!important;
+    left:50%!important;
+    top:var(--moretti-fit-top,56px)!important;
+    transform:translateX(-50%) scale(var(--moretti-page-scale,1))!important;
+    transform-origin:top center!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+}
+
+</style></head>
+<body>
+<script src="js/audio.js"></script>
+<button id="soundToggle" class="sound-toggle" type="button" aria-label="효과음 켜기 또는 끄기">🔊</button>
+<header class="topbar">
+<a class="brand" href="index.html">⚜ MORETTI FAMILY</a>
+<nav class="nav"><a href="dante.html">DANTE</a><a href="pillars.html">SEVEN PILLARS</a><a href="family.html">FAMILY</a><a href="mansion.html">MANSION</a><a class="active" href="classified.html">CLASSIFIED</a><a href="letter.html">SEALED LETTER</a></nav>
+<a class="archive-btn" href="https://drive.google.com/file/d/1KPtaasyuG1a4rPSy5iMXDtZoOibZ9etT/view?usp=sharing" rel="noopener" target="_blank">Ω OFFICIAL ARCHIVE</a>
+</header>
+<main class="shell">
+<section class="spread">
+<div class="page left dark">
+<div class="kicker">DOSSIER Ω · TOP SECRET</div>
+<h1 class="display">CLASSIFIED<br/>ARCHIVE</h1>
+<p class="quote">“Some memories belong to history. Others belong only to Family.”</p>
+<span class="kr">어떤 기억은 역사에 남고, 어떤 기억은 가족만이 간직한다.</span>
+<div class="rule"></div>
+<p>이후의 모든 기록은 모레티 가문의 최고 기밀로 분류됩니다. 가주의 허가 없이는 열람할 수 없습니다.</p>
+<span class="page-no">72</span>
+</div>
+<div class="page right">
+<div class="kicker">SECURITY TERMINAL · Ω-001</div>
+<div aria-live="polite" class="terminal" id="securityTerminal">
+<div class="terminal-head"><span>MORETTI SECURE ARCHIVE</span><span class="terminal-percent" id="terminalPercent">000%</span></div>
+<div class="terminal-progress"><i id="terminalProgressBar"></i></div>
+<div class="terminal-screen" id="terminalScreen"></div><div class="terminal-cursor" id="terminalCursor">▋</div>
+</div>
+<span class="page-no">73</span>
+<div aria-hidden="true" class="confidential-stamp-overlay" id="confidentialStamp">
+<img alt="Classified document stamp" referrerpolicy="no-referrer" src="https://i.ibb.co/GvzGLNV7/file-00000000ec2472068432467b3e323d23.png"/>
+</div></div>
+</section>
+<div class="footer-nav"><a href="mansion.html">← MANSION</a><a href="letter.html">NEXT · SEALED LETTER →</a></div>
+</main>
+
+<script>
+(() => {
+ const A=window.AudioManager||null;
+ if(A) A.configure({basePath:'assets/sounds/'});
+ const terminal=document.querySelector('#securityTerminal');
+ const pct=document.querySelector('#terminalPercent');
+ const bar=document.querySelector('#terminalProgressBar');
+ const screen=document.querySelector('#terminalScreen');
+ const cursor=document.querySelector('#terminalCursor');
+ const stamp=document.querySelector('#confidentialStamp');
+ const rightPage=document.querySelector('.page.right');
+
+ const lines=[
+ 'BOOT STATUS ........... COMPLETE',
+ 'ARCHIVE DATABASE ...... CONNECTED',
+ 'USER AUTHORITY ........ VERIFIED',
+ 'SECURITY LEVEL ........ Ω',
+ 'PUBLIC RECORDS ........ UNLOCKED',
+ 'CLASSIFIED RECORDS .... LOCKED',
+ 'PRIVATE DOSSIERS ...... LOCKED',
+ 'TRUE HISTORY .......... ENCRYPTED',
+ 'INHERITANCE FILE ...... RESTRICTED',
+ '━━━━━━━━━━━━━━━━━━━━━━',
+ 'ACCESS REQUEST ........ REJECTED',
+ 'AUTHORIZATION ......... DENIED'
+ ];
+
+ let p=0;
+ let typingActive=false;
+ let sequenceStarted=false;
+
+ function startSecuritySequence(){
+   if(sequenceStarted) return;
+   sequenceStarted=true;
+
+   if(A){
+     A.unlock();
+   }
+
+   const timer=setInterval(()=>{
+     p=Math.min(100,p+1);
+     pct.textContent=String(p).padStart(3,'0')+'%';
+     bar.style.width=p+'%';
+
+     if(p>=100){
+       clearInterval(timer);
+       terminal.classList.add('complete');
+       typeLines();
+     }
+   },28);
+ }
+
+ /* 첫 사용자 입력으로 보안 시퀀스를 시작한다.
+    이렇게 해야 브라우저 자동재생 정책에 막히지 않고
+    타자음과 스탬프음이 끝까지 정상 재생된다. */
+ document.addEventListener('pointerdown',startSecuritySequence,{once:true,capture:true});
+ document.addEventListener('keydown',startSecuritySequence,{once:true,capture:true});
+
+ function typeLines(){
+   let li=0, ci=0, text='';
+   typingActive=true;
+   if(A){
+     A.unlock();
+     A.typewriter();
+   }
+
+   function tick(){
+     if(li>=lines.length){
+       cursor.textContent='';
+       typingActive=false;
+       if(A) A.stopTyping();
+       setTimeout(hitStamp,800);
+       return;
+     }
+
+     if(ci<lines[li].length){
+       text+=lines[li][ci++];
+       screen.textContent=text;
+       setTimeout(tick,18);
+     }else{
+       text+='\n';
+       li++;
+       ci=0;
+       screen.textContent=text;
+       setTimeout(tick,110);
+     }
+   }
+   tick();
+ }
+
+ function hitStamp(){
+   if(!stamp || stamp.classList.contains('stamped')) return;
+   if(A){
+     A.stopTyping();
+     A.stamp();
+   }
+   rightPage.classList.add('stamp-shake');
+   stamp.classList.add('stamped');
+   stamp.setAttribute('aria-hidden','false');
+
+   setTimeout(()=>{
+     rightPage.classList.remove('stamp-shake');
+     rightPage.classList.add('ready-next');
+   },700);
+ }
+
+ function goToLetter(){
+   if(!rightPage.classList.contains('ready-next')) return;
+   if(A){
+     A.stopTyping();
+     A.letterPaper();
+   }
+   document.body.style.transition='opacity .45s ease';
+   document.body.style.opacity='0';
+   setTimeout(()=>{ location.href='letter.html'; },450);
+ }
+
+ /* 도장이 찍힌 오른쪽 문서를 클릭하면 다음 챕터인 봉인 편지로 이동 */
+ rightPage.addEventListener('click',e=>{
+   if(!rightPage.classList.contains('ready-next')) return;
+   e.preventDefault();
+   goToLetter();
+ });
+
+ /* 키보드: 오른쪽 화살표 또는 Enter */
+ document.addEventListener('keydown',e=>{
+   if(!rightPage.classList.contains('ready-next')) return;
+   if(e.key==='ArrowRight' || e.key==='Enter'){
+     e.preventDefault();
+     goToLetter();
+   }
+ });
+
+ window.addEventListener('pagehide',()=>{ if(A) A.stopTyping(); });
+})();
+</script>
+<script>
+if(window.AudioManager){
+ AudioManager.configure({basePath:'assets/sounds/'});
+ AudioManager.bindMuteButton('#soundToggle');
+}
+</script><script src="js/final-fit.js"></script>
+</body></html>

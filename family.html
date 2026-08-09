@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#050505" name="theme-color"/>
+<title>Moretti Family — Official Family Dossier</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+KR:wght@400;500;600&display=swap');
+:root{--bg:#030303;--paper:#0b0a09;--paper2:#15110d;--ivory:#eee8dc;--muted:#9e9588;--gold:#b88a3d;--gold2:#f0d18a;--gold3:#fff0b2;--line:rgba(214,174,89,.28)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#030303;color:var(--ivory);font-family:'Noto Serif KR',serif}
+body{background:radial-gradient(circle at 50% -10%,rgba(214,174,89,.08),transparent 31%),#030303;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;z-index:-1;background-image:radial-gradient(circle at 12% 18%,#ffe2a8 0 1px,transparent 1.2px),radial-gradient(circle at 75% 31%,#d6ae62 0 1px,transparent 1.3px);background-size:310px 280px,390px 340px}
+a{color:inherit;text-decoration:none} img{display:block;max-width:100%} button{font:inherit;color:inherit}
+
+.topbar{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 24px;background:rgba(3,3,3,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font:12px Cinzel,serif;letter-spacing:.18em;color:#d8b86e}
+.nav{display:flex;gap:16px;overflow:auto;white-space:nowrap}
+.nav a{font:9px Cinzel,serif;letter-spacing:.13em;color:var(--muted)} .nav a:hover,.nav a.active{color:var(--gold2)}
+.archive-btn{padding:8px 13px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.13em;color:var(--gold2)}
+
+.shell{width:min(1540px,calc(100% - 46px));margin:28px auto 72px}
+.heading{display:flex;justify-content:space-between;gap:16px;margin:0 8px 13px;color:#8e7956;font:8px Cinzel,serif;letter-spacing:.18em}
+.book{position:relative;height:830px;min-height:830px;perspective:2600px}
+.book-shadow{position:absolute;left:8%;right:8%;bottom:0;height:10%;background:rgba(0,0,0,.8);filter:blur(36px);border-radius:50%}
+.sheet{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transform:translateX(24px) scale(.987);transition:opacity .48s ease,transform .76s cubic-bezier(.2,.75,.2,1)}
+.sheet.is-active{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+.sheet.turn-out{transform-origin:left center;transform:rotateY(-9deg) translateX(-34px) scale(.97);opacity:0}
+
+.cover{position:relative;width:100%;height:830px;border:1px solid #4d351a;background:radial-gradient(circle at 50% 26%,rgba(150,104,35,.12),transparent 34%),repeating-linear-gradient(35deg,rgba(255,255,255,.012) 0 1px,transparent 1px 5px),linear-gradient(135deg,#18130d,#070606 69%);box-shadow:0 50px 110px rgba(0,0,0,.68),inset 0 0 0 9px #070706,inset 0 0 0 10px rgba(211,164,76,.24),inset 28px 0 40px rgba(0,0,0,.42);cursor:pointer;overflow:hidden;text-align:center}
+.cover:before,.cover:after{content:"";position:absolute;pointer-events:none} .cover:before{inset:28px;border:1px solid rgba(224,183,96,.44)} .cover:after{inset:40px;border:1px solid rgba(224,183,96,.15)}
+.spine{position:absolute;left:0;top:0;bottom:0;width:72px;background:linear-gradient(90deg,#050505,#15100b 55%,#060606);box-shadow:inset -1px 0 rgba(219,174,87,.18),10px 0 22px rgba(0,0,0,.34)}
+.cover-kicker,.cover-sub,.cover-hint{position:absolute;left:50%;transform:translateX(-50%);font-family:Cinzel,serif;letter-spacing:.2em;color:#b79559}
+.cover-kicker{top:8%;font-size:9px} .cover-sub{top:70%;font-size:11px} .cover-hint{bottom:5%;font-size:8px;animation:pulse 2.1s infinite}
+.cover-emblem{position:absolute;top:18%;left:50%;transform:translateX(-50%);width:164px;height:164px;object-fit:contain;filter:drop-shadow(0 16px 26px rgba(0,0,0,.52))}
+.cover h1{position:absolute;left:0;right:0;top:43%;margin:0;font:700 clamp(64px,8vw,112px)/.88 Cinzel,serif;letter-spacing:.11em;background:linear-gradient(110deg,#76521f,#c99b45,#fff0ad,#9a6d2a,#e3bd67,#fff0b0,#7d5720);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.cover:hover h1{animation:goldSweep 1.7s ease} .cover:hover{transform:translateY(-3px);transition:.35s}
+@keyframes goldSweep{0%{background-position:110% 50%}100%{background-position:-110% 50%}} @keyframes pulse{50%{opacity:.42}}
+
+.spread{height:830px;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(110deg,#12100e,#080808);border:1px solid var(--line);box-shadow:0 44px 96px rgba(0,0,0,.58);overflow:hidden;position:relative}
+.spread:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(218,174,86,.2),transparent);box-shadow:-14px 0 30px rgba(0,0,0,.38),14px 0 30px rgba(0,0,0,.27);z-index:10}
+.page{position:relative;min-width:0;padding:clamp(44px,4.7vw,76px);display:flex;flex-direction:column;justify-content:center}
+.page.dark{background:radial-gradient(circle at 28% 18%,rgba(213,167,77,.065),transparent 30%),#090908}
+.kicker{font:9px Cinzel,serif;letter-spacing:.23em;color:#b7904f}
+.title{margin:14px 0 16px;font:600 clamp(34px,4.2vw,66px)/1.02 Cinzel,serif;letter-spacing:.065em;color:#e7c574}
+.rule{width:62%;height:1px;margin:20px 0 28px;background:linear-gradient(90deg,#d6ad60,transparent)}
+.en{font:21px/1.82 'Cormorant Garamond',serif;color:#eee5d8}
+.ko{margin-top:24px;font-size:12px;line-height:1.95;color:#aaa197;word-break:keep-all}
+.quote{margin:18px 0 0;padding-left:20px;border-left:1px solid #a97b31;font:italic clamp(22px,2vw,30px)/1.5 'Cormorant Garamond',serif;color:#e8dfd0}
+.folio{position:absolute;right:34px;bottom:24px;font:7px Cinzel,serif;letter-spacing:.15em;color:#6f665a}
+
+.crest-panel{display:grid;place-items:center;text-align:center;height:100%}
+.crest-panel img{width:190px;height:190px;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.56))}
+.crest-panel h3{margin:25px 0 12px;font:600 28px Cinzel,serif;letter-spacing:.12em;color:#dfbd70}
+.crest-panel p{max-width:520px;font-size:12px;line-height:2;color:#a79d90}
+
+.secret-page{padding:0!important;background:#070706!important}
+.secret-stage{height:100%;display:grid;place-items:center;position:relative;overflow:hidden}
+.secret-button{position:relative;width:min(680px,82%);padding:0;border:0;background:transparent;cursor:pointer;isolation:isolate}
+.secret-button img{width:100%;height:auto;filter:brightness(.95) drop-shadow(0 22px 38px rgba(0,0,0,.58));transition:transform .35s ease,filter .35s ease}
+.secret-button:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(110deg,transparent 30%,rgba(255,234,170,.52) 47%,transparent 62%);transform:translateX(-120%);mix-blend-mode:screen}
+.secret-button:hover img{transform:scale(1.018);filter:brightness(1.08) drop-shadow(0 0 20px rgba(236,194,98,.25)) drop-shadow(0 25px 42px rgba(0,0,0,.62))}
+.secret-button:hover:after{animation:plateShine 1.2s ease} @keyframes plateShine{to{transform:translateX(120%)}}
+.secret-hint{position:absolute;bottom:42px;font:8px Cinzel,serif;letter-spacing:.2em;color:#8e7851}
+.access-overlay{position:absolute;inset:0;display:grid;place-items:center;background:rgba(3,3,3,.91);opacity:0;visibility:hidden;transition:.28s;z-index:8}
+.access-overlay.show{opacity:1;visibility:visible}
+.access-box{text-align:center}
+.access-line{display:block;margin:8px 0;font:10px Cinzel,serif;letter-spacing:.25em;color:#7e6f58;opacity:0;transform:translateY(5px)}
+.access-overlay.show .access-line:nth-child(1){animation:reveal .35s .12s forwards;color:#e8c875;font-size:18px}
+.access-overlay.show .access-line:nth-child(2){animation:reveal .35s .55s forwards}
+.access-overlay.show .access-line:nth-child(3){animation:reveal .35s .9s forwards;color:#d6ad60}
+@keyframes reveal{to{opacity:1;transform:none}}
+
+.record-card{height:100%;padding:34px 32px;border:1px solid rgba(218,174,86,.30);background:linear-gradient(145deg,#12100d,#080807);position:relative}
+.record-card:before,.record-card:after{content:"";position:absolute;width:24px;height:24px} .record-card:before{left:10px;top:10px;border-left:2px solid #d6ad60;border-top:2px solid #d6ad60} .record-card:after{right:10px;bottom:10px;border-right:2px solid #d6ad60;border-bottom:2px solid #d6ad60}
+.record-card h2{margin:4px 0 10px;text-align:center;font:600 clamp(24px,3vw,42px) Cinzel,serif;letter-spacing:.11em;color:#e5bf6c}
+.file-id{text-align:center;font:8px Cinzel,serif;letter-spacing:.35em;color:#846a3e;margin-bottom:26px}
+.record-grid{display:grid;grid-template-columns:145px 1fr;border-top:1px solid rgba(217,187,118,.16);margin:0}
+.record-grid dt,.record-grid dd{margin:0;padding:18px 0;border-bottom:1px solid rgba(217,187,118,.13)}
+.record-grid dt{font:600 10px Cinzel,serif;letter-spacing:.08em;color:#d2a34e}
+.record-grid dd{font-size:13px;line-height:1.75;color:#f0e8dc}
+.record-grid small{display:block;margin-top:3px;color:#81786c;font-size:11px}
+.values span{display:block}
+
+.values-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:26px}
+.value{padding:22px;border:1px solid rgba(214,174,89,.18);background:linear-gradient(145deg,#13100c,#090807);position:relative;overflow:hidden}
+.value:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(#7f5b24,#e3bd67,#7f5b24)}
+.value h3{margin:0 0 7px;font:600 17px Cinzel,serif;letter-spacing:.12em;color:#e3bd67}
+.value p{margin:0;font-size:11px;line-height:1.8;color:#aaa197}
+.value:hover h3{animation:goldSweep 1.2s ease;background:linear-gradient(90deg,#c7953d,#fff0ad,#9c6b25);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.end{height:830px;display:grid;place-items:center;align-content:center;text-align:center;background:radial-gradient(circle at center,rgba(200,151,65,.08),transparent 34%),#080807;border:1px solid var(--line);box-shadow:0 44px 96px rgba(0,0,0,.58)}
+.end img{width:150px;height:150px;object-fit:contain;opacity:.9;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5))}
+.end .eyebrow{font:9px Cinzel,serif;letter-spacing:.2em;color:#9d8050;margin-top:24px}
+.end h2{font:600 clamp(42px,5vw,72px) Cinzel,serif;letter-spacing:.12em;margin:12px 0;color:#e8c675}
+.end p{font:italic 24px/1.7 'Cormorant Garamond',serif;color:#cfc5b7;margin:6px 0}
+.end a{margin-top:25px;padding:12px 18px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.15em}
+
+.page-zone{position:absolute;z-index:30;top:0;bottom:0;width:9%;border:0;background:transparent;font-size:54px;color:rgba(238,211,150,.18);cursor:pointer;transition:.3s}
+.page-zone:hover{color:#e6c276;text-shadow:0 0 18px rgba(213,169,84,.25)} .page-zone:disabled{opacity:.05;cursor:default;pointer-events:none}
+.page-zone-left{left:0} .page-zone-right{right:0}
+.counter{position:absolute;z-index:31;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font:8px Cinzel,serif;letter-spacing:.16em;color:#7f7465;pointer-events:none}
+.counter i{width:32px;height:1px;background:#6c5531}
+.instruction{text-align:center;color:#766c60;font-size:10px;margin:15px 0 0}
+.footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
+.footer-nav a{padding:11px 14px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.12em}
+
+@media(max-width:1050px){
+ .book{height:1080px;min-height:1080px} .cover,.end{height:1080px} .spread{height:1080px;grid-template-columns:1fr;grid-template-rows:50% 50%} .spread:after{display:none}
+ .page{padding:34px 42px} .secret-page{grid-row:1/-1} .secret-stage{min-height:1080px}
+}
+@media(max-width:650px){
+ .topbar{padding:11px 12px} .brand{display:none} .shell{width:calc(100% - 18px);margin-top:16px} .heading{display:none}
+ .book{height:940px;min-height:940px} .cover,.end{height:940px} .spine{width:44px} .cover-emblem{width:112px;height:112px;top:20%} .cover h1{font-size:52px}
+ .spread{height:940px;grid-template-rows:48% 52%} .page{padding:24px 22px} .title{font-size:30px} .en{font-size:17px;line-height:1.68} .ko{font-size:11px;line-height:1.68;margin-top:14px}
+ .record-grid{grid-template-columns:105px 1fr} .record-grid dt,.record-grid dd{padding:13px 0} .record-card{padding:26px 20px}
+ .secret-stage{min-height:940px} .page-zone{width:14%}
+}
+@media(prefers-reduced-motion:reduce){.sheet,.secret-button img{transition:none}}
+
+
+/* ===== FAMILY V2 · THE FAMILY CODE ===== */
+.family-code-spread{
+  background:
+    radial-gradient(circle at 18% 16%,rgba(220,178,87,.055),transparent 27%),
+    linear-gradient(135deg,#12100e,#080807 70%)!important;
+}
+.family-code-title{
+  position:relative;
+  overflow:hidden;
+}
+.family-code-title:after{
+  content:"VII";
+  position:absolute;
+  right:26px;
+  bottom:4px;
+  font:600 170px/1 Cinzel,serif;
+  color:rgba(214,174,89,.018);
+  pointer-events:none;
+}
+.family-code-stamp{
+  position:absolute;
+  left:clamp(44px,4.7vw,76px);
+  bottom:34px;
+  font:7px Cinzel,serif;
+  letter-spacing:.18em;
+  color:#6f665a;
+}
+.family-code-page{
+  justify-content:center!important;
+}
+.family-code-card{
+  position:relative;
+  padding:28px 30px;
+  border:1px solid rgba(218,174,86,.32);
+  background:linear-gradient(145deg,#12100d,#090807);
+  box-shadow:inset 0 0 0 7px #080706,inset 0 0 0 8px rgba(214,174,89,.08);
+}
+.family-code-card:before,
+.family-code-card:after{
+  content:"";
+  position:absolute;
+  width:24px;
+  height:24px;
+}
+.family-code-card:before{
+  left:10px;top:10px;
+  border-left:2px solid #d6ad60;
+  border-top:2px solid #d6ad60;
+}
+.family-code-card:after{
+  right:10px;bottom:10px;
+  border-right:2px solid #d6ad60;
+  border-bottom:2px solid #d6ad60;
+}
+.family-code-heading{
+  display:block;
+  text-align:center;
+  margin:4px 0 16px;
+  font:600 18px Cinzel,serif;
+  letter-spacing:.18em;
+  color:#e2bd6c;
+  text-shadow:0 0 10px rgba(232,196,116,.18);
+}
+.family-code-row{
+  display:grid;
+  grid-template-columns:48px 1fr;
+  align-items:center;
+  gap:12px;
+  padding:14px 0;
+  border-top:1px solid rgba(214,174,89,.12);
+}
+.family-code-row:first-of-type{border-top:0}
+.family-code-row .roman{
+  font:600 18px Cinzel,serif;
+  color:#d6b36b;
+  text-shadow:0 0 12px rgba(238,203,126,.30);
+}
+.family-code-row b{
+  display:block;
+  font:500 17px/1.3 'Cormorant Garamond',serif;
+  color:#eee7dc;
+}
+.family-code-row small{
+  display:block;
+  margin-top:4px;
+  font-size:10px;
+  line-height:1.5;
+  color:#847c71;
+}
+.family-code-row:hover .roman{
+  animation:familyCodeGlow 1.1s ease;
+}
+@keyframes familyCodeGlow{
+  0%{color:#c3a25d;text-shadow:0 0 8px rgba(238,203,126,.18)}
+  50%{color:#fff0ad;text-shadow:0 0 16px rgba(255,219,127,.56)}
+  100%{color:#d6b36b;text-shadow:0 0 12px rgba(238,203,126,.30)}
+}
+@media(max-width:650px){
+  .family-code-card{padding:22px 18px}
+  .family-code-row{grid-template-columns:38px 1fr;padding:10px 0}
+  .family-code-row .roman{font-size:15px}
+  .family-code-row b{font-size:15px}
+  .family-code-row small{font-size:9px}
+}
+
+.sound-toggle{
+ position:fixed;right:16px;bottom:16px;z-index:999;width:36px;height:36px;
+ border:1px solid rgba(214,174,89,.28);border-radius:50%;
+ background:rgba(5,5,5,.78);color:#d8b86e;display:grid;place-items:center;
+ cursor:pointer;font-size:14px;opacity:.72;backdrop-filter:blur(8px);transition:.2s ease
+}
+.sound-toggle:hover{opacity:1;color:#f0d18a;border-color:rgba(240,209,138,.5)}
+@media(max-width:650px){.sound-toggle{right:10px;bottom:10px;width:33px;height:33px;font-size:13px}}
+
+
+/* ===== COMPACT DESKTOP LAYOUT ===== */
+@media (min-width:1051px){
+  .shell{
+    width:min(1240px,calc(100% - 54px))!important;
+    margin:20px auto 54px!important;
+  }
+  .book,
+  .cover,
+  .spread,
+  .end{
+    height:690px!important;
+    min-height:690px!important;
+  }
+  .page{
+    padding:36px clamp(30px,3.2vw,50px)!important;
+  }
+  .title{
+    font-size:clamp(30px,3.5vw,52px)!important;
+  }
+  .en{
+    font-size:18px!important;
+    line-height:1.65!important;
+  }
+  .ko{
+    font-size:10.5px!important;
+    line-height:1.75!important;
+    margin-top:16px!important;
+  }
+  .quote{
+    font-size:clamp(20px,1.8vw,26px)!important;
+  }
+  .cover-emblem{
+    width:120px!important;
+    height:120px!important;
+  }
+  .cover h1{
+    font-size:clamp(50px,5.6vw,82px)!important;
+  }
+  .record-card{
+    padding:26px 24px!important;
+  }
+  .record-grid dt,
+  .record-grid dd{
+    padding:12px 0!important;
+  }
+  .crest-panel img{
+    width:145px!important;
+    height:145px!important;
+  }
+}
+
+
+/* ===== MORETTI OFFICIAL ARTBOOK · FINAL VIEWPORT FIT ===== */
+@media (min-width:901px){
+  html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden!important;
+  }
+  body.moretti-final-fit main{
+    position:absolute!important;
+    left:50%!important;
+    top:var(--moretti-fit-top,56px)!important;
+    transform:translateX(-50%) scale(var(--moretti-page-scale,1))!important;
+    transform-origin:top center!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+}
+
+
+/* ===== MORETTI EMBLEM HEARTBEAT HOVER ===== */
+@keyframes morettiHeartbeat{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(218,173,78,0))}
+  10%{transform:scale(1.08);filter:drop-shadow(0 0 10px rgba(244,202,105,.55))}
+  18%{transform:scale(1)}
+  28%{transform:scale(1.045);filter:drop-shadow(0 0 7px rgba(218,173,78,.38))}
+  38%{transform:scale(1)}
+  72%{transform:scale(1)}
+}
+.moretti-emblem-pulse{
+  transform-origin:center center;
+  will-change:transform,filter;
+}
+.moretti-emblem-pulse:hover{
+  animation:morettiHeartbeat 1.55s ease-in-out infinite;
+}
+
+
+/* ===== USER REVISION · SMALLER FAMILY EMBLEMS ===== */
+.cover .cover-emblem,
+.cover img.cover-emblem,
+.cover img.moretti-emblem-pulse{
+  width:92px!important;
+  height:92px!important;
+  top:20%!important;
+}
+.crest-panel img{
+  width:112px!important;
+  height:112px!important;
+}
+.end img.moretti-emblem-pulse{
+  max-width:112px!important;
+  max-height:112px!important;
+  width:auto!important;
+  height:auto!important;
+}
+@media(max-width:650px){
+  .cover .cover-emblem,
+  .cover img.cover-emblem,
+  .cover img.moretti-emblem-pulse{
+    width:82px!important;
+    height:82px!important;
+  }
+  .crest-panel img{
+    width:100px!important;
+    height:100px!important;
+  }
+}
+
+/* ===== FAMILY COVER + CREST REVEAL FINAL ===== */
+/* Cover emblem: intentionally compact; the duplicate class bug above is also fixed. */
+.cover img.cover-emblem{
+  position:absolute!important;
+  left:50%!important;
+  top:18.5%!important;
+  transform:translateX(-50%)!important;
+  width:88px!important;
+  height:88px!important;
+  object-fit:contain!important;
+  z-index:3!important;
+}
+
+/* Inner FAMILY CREST: begins tiny, spins twice, grows, then stops permanently. */
+.crest-panel img.family-crest-reveal{
+  width:280px!important;
+  height:280px!important;
+  object-fit:contain!important;
+  transform-origin:center center;
+  opacity:0;
+}
+
+/* Animation starts only when this book sheet becomes the active page. */
+.sheet.is-active .crest-panel img.family-crest-reveal{
+  animation:familyCrestReveal 1.55s cubic-bezier(.18,.72,.18,1) both;
+}
+
+@keyframes familyCrestReveal{
+  0%{
+    transform:scale(.14) rotate(-720deg);
+    opacity:0;
+    filter:brightness(.68) drop-shadow(0 0 0 rgba(239,194,92,0));
+  }
+  18%{
+    opacity:.72;
+  }
+  72%{
+    transform:scale(1.08) rotate(0deg);
+    opacity:1;
+    filter:brightness(1.18) drop-shadow(0 0 18px rgba(239,194,92,.32));
+  }
+  88%{
+    transform:scale(.97) rotate(0deg);
+    filter:brightness(1.03) drop-shadow(0 12px 22px rgba(0,0,0,.52));
+  }
+  100%{
+    transform:scale(1) rotate(0deg);
+    opacity:1;
+    filter:brightness(1) drop-shadow(0 12px 22px rgba(0,0,0,.52));
+  }
+}
+
+/* Once reveal is done, hovering can still give the established heartbeat feel. */
+.sheet.is-active .crest-panel img.family-crest-reveal:hover{
+  animation:morettiHeartbeat 1.55s ease-in-out infinite;
+}
+
+@media(max-width:650px){
+  .cover img.cover-emblem{
+    width:76px!important;
+    height:76px!important;
+    top:19%!important;
+  }
+  .crest-panel img.family-crest-reveal{
+    width:215px!important;
+    height:215px!important;
+  }
+}
+
+</style>
+</head>
+<body>
+<script src="js/audio.js"></script>
+<button id="soundToggle" class="sound-toggle" type="button" aria-label="효과음 켜기 또는 끄기">🔊</button>
+<header class="topbar">
+<a class="brand" href="index.html">⚜ MORETTI FAMILY</a>
+<nav class="nav">
+<a href="dante.html">DANTE</a><a href="pillars.html">SEVEN PILLARS</a><a class="active" href="family.html">FAMILY</a><a href="mansion.html">MANSION</a><a href="classified.html">CLASSIFIED</a><a href="letter.html">SEALED LETTER</a>
+</nav>
+<a class="archive-btn" href="https://drive.google.com/file/d/1KPtaasyuG1a4rPSy5iMXDtZoOibZ9etT/view?usp=sharing" rel="noopener" target="_blank">Ω OFFICIAL ARCHIVE</a>
+</header>
+<main class="shell">
+<div class="heading"><span>CHAPTER IV · FAMILY DOSSIER</span><span>OFFICIAL FAMILY ARCHIVE · FILE F-001</span></div>
+<section class="book" id="familyBook">
+<div class="book-shadow"></div>
+<article aria-hidden="false" class="sheet is-active">
+<button aria-label="패밀리 도시에 열기" class="cover" data-open="" type="button">
+<span class="spine"></span><span class="cover-kicker">MORETTI OFFICIAL ARTBOOK · CHAPTER IV</span>
+<img alt="Moretti Family emblem" class="cover-emblem moretti-emblem-pulse" referrerpolicy="no-referrer" src="assets/images/moretti-family-emblem.png"/>
+<h1>MORETTI<br/>FAMILY</h1>
+<span class="cover-sub">OFFICIAL FAMILY ARCHIVE · HONOR · LOYALTY · FAMILY</span>
+<span class="cover-hint">CLICK THE COVER TO OPEN THE DOSSIER</span>
+</button>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<section class="page dark">
+<span class="kicker">FAMILY DOSSIER</span><h2 class="title">MORETTI FAMILY</h2><div class="rule"></div>
+<div class="en">For more than three centuries, the Moretti Family has stood at the pinnacle of Italy's noble society. To the world, they are an aristocratic family respected for their wealth, their influence, and their unwavering dignity.</div>
+<div class="ko">모레티 가문은 300년이 넘는 역사를 가진 이탈리아 최고의 명문 귀족 가문이다. 세상은 그들을 부와 명예, 그리고 품격을 모두 갖춘 완벽한 귀족 가문으로 기억한다.</div>
+<div class="folio">FAMILY FILE F-001 · PUBLIC DOSSIER</div>
+</section>
+<section class="page">
+<div class="crest-panel">
+<span class="kicker">HOUSE EMBLEM · OFFICIAL CREST</span>
+<img alt="Moretti Family crest" class="family-crest-reveal moretti-emblem-pulse" referrerpolicy="no-referrer" src="assets/images/moretti-family-emblem.png"/>
+<h3>FAMILY CREST</h3>
+<p>황금 독수리는 권위를, 왕관은 계승된 역사를, 방패는 가문을 지키는 신념을 상징한다. 모든 후계자는 이 문장과 함께 모레티의 이름을 이어받는다.</p>
+</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<section class="page dark">
+<span class="kicker">OFFICIAL RECORD</span><h2 class="title">CLASSIFIED<br/>ENTRY</h2><div class="rule"></div>
+<p class="quote">“Every great family preserves a history. Every history hides a truth.”</p>
+<div class="ko">가문의 공개 기록 너머에는 제한된 기록이 존재한다. 아래의 문서는 모레티 가문 공식 가족 파일 F-001에 연결된 인증 문서다.</div>
+</section>
+<section class="page secret-page">
+<div class="secret-stage">
+<button aria-label="TOP SECRET 문서 열기" class="secret-button" id="secretOpen" type="button">
+<img alt="TOP SECRET classified document" referrerpolicy="no-referrer" src="https://i.ibb.co/zVfDK6VQ/file-00000000e0bc72068373eda1c2293dd4.png"/>
+</button>
+<span class="secret-hint">CLICK THE CLASSIFIED DOCUMENT TO OPEN FAMILY FILE F-001</span>
+<div aria-hidden="true" class="access-overlay" id="accessOverlay">
+<div class="access-box">
+<span class="access-line">ACCESS GRANTED</span>
+<span class="access-line">FAMILY FILE F-001</span>
+<span class="access-line">DOSSIER OPEN</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<section class="page">
+<div class="record-card">
+<h2>OFFICIAL FAMILY RECORD</h2><div class="file-id">FAMILY FILE F-001</div>
+<dl class="record-grid">
+<dt>Founded</dt><dd>17th Century<small>17세기 설립</small></dd>
+<dt>Origin</dt><dd>Italy<small>이탈리아</small></dd>
+<dt>Current Head</dt><dd>Dante Moretti<small>단테 모레티</small></dd>
+<dt>Residence</dt><dd>Moretti Mansion<small>모레티 저택</small></dd>
+<dt>Core Values</dt><dd class="values"><span>Honor</span><span>Loyalty</span><span>Family</span><small>명예 · 충성 · 가족</small></dd>
+<dt>Motto</dt><dd>Silenzio · Onore · Potere<small>침묵 · 명예 · 권력</small></dd>
+</dl>
+</div>
+</section>
+<section class="page dark">
+<span class="kicker">ARCHIVE COMMENTARY</span><h2 class="title">THE MORETTI<br/>LEGACY</h2><div class="rule"></div>
+<div class="en">For more than three centuries, the Moretti name has endured not through wealth alone, but through a discipline passed from one generation to the next.</div>
+<div class="ko">가문의 기록은 권력과 재산만으로 완성되지 않는다. 모레티라는 이름을 이어 온 핵심은 세대를 넘어 반복되어 온 명예, 충성, 그리고 가족이라는 가치다.</div>
+<p class="quote">“A legacy survives only when someone chooses to protect it.”</p>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<section class="page dark">
+<span class="kicker">FAMILY PHILOSOPHY</span><h2 class="title">THREE<br/>PRINCIPLES</h2><div class="rule"></div>
+<div class="en">Honor gives the name its weight.<br/>Loyalty gives the Family its strength.<br/>Family gives power a reason to exist.</div>
+<div class="ko">명예는 이름에 무게를 더하고, 충성은 가문을 하나로 묶으며, 가족은 그 모든 힘이 존재해야 할 이유가 된다.</div>
+</section>
+<section class="page">
+<div class="values-grid">
+<div class="value"><h3>HONOR</h3><p>A family's name must never be stained.<br/>명예는 가문의 이름보다 먼저 지켜야 할 가치다.</p></div>
+<div class="value"><h3>LOYALTY</h3><p>Trust is earned over generations.<br/>충성은 강요되는 것이 아니라 오랜 신뢰로 증명된다.</p></div>
+<div class="value"><h3>FAMILY</h3><p>Power has meaning only when there is someone to protect.<br/>지켜야 할 사람이 있을 때 비로소 힘은 의미를 갖는다.</p></div>
+</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread family-code-spread">
+<section class="page dark family-code-title">
+<span class="kicker">HOUSE ARCHIVE · FAMILY CODE</span>
+<h2 class="title">THE FAMILY<br/>CODE</h2>
+<div class="rule"></div>
+<p class="quote">
+        “Honor. Loyalty. Family.”
+      </p>
+<div class="ko">
+        모레티 가문은 권력만으로 이어져 온 가문이 아니다.
+        모든 구성원이 같은 신념을 지켜왔기에 수백 년의 역사를 이어올 수 있었다.
+        이 일곱 개의 규율은 세대를 넘어 이어지는 가문의 기준이다.
+      </div>
+<span class="family-code-stamp">HOUSE RULES · FILE F-007</span>
+</section>
+<section class="page family-code-page">
+<div class="family-code-card">
+<span class="family-code-heading">THE FAMILY CODE</span>
+<div class="family-code-row">
+<span class="roman">I</span>
+<div><b>Honor Above All</b><small>명예는 무엇보다 우선한다.</small></div>
+</div>
+<div class="family-code-row">
+<span class="roman">II</span>
+<div><b>Absolute Loyalty</b><small>충성에는 조건이 없다.</small></div>
+</div>
+<div class="family-code-row">
+<span class="roman">III</span>
+<div><b>Protect the Family</b><small>가족은 목숨을 걸고 지킨다.</small></div>
+</div>
+<div class="family-code-row">
+<span class="roman">IV</span>
+<div><b>Keep Every Promise</b><small>한 번 한 약속은 반드시 지킨다.</small></div>
+</div>
+<div class="family-code-row">
+<span class="roman">V</span>
+<div><b>Respect Every Member</b><small>가족 모두를 존중한다.</small></div>
+</div>
+<div class="family-code-row">
+<span class="roman">VI</span>
+<div><b>Never Betray the Family</b><small>배신은 어떤 이유로도 용납되지 않는다.</small></div>
+</div>
+<div class="family-code-row">
+<span class="roman">VII</span>
+<div><b>The Family Comes Home Together</b><small>가족은 언제나 함께 돌아온다.</small></div>
+</div>
+</div>
+</section>
+</div>
+</article><article aria-hidden="true" class="sheet">
+<div class="end">
+<img alt="Moretti Family emblem" class="moretti-emblem-pulse" referrerpolicy="no-referrer" src="assets/images/moretti-family-emblem.png"/>
+<span class="eyebrow">END OF FAMILY DOSSIER</span>
+<h2>MORETTI</h2>
+<p>For over three centuries,<br/>one name has endured.</p>
+<a href="mansion.html">NEXT · MORETTI MANSION →</a>
+</div>
+</article>
+<button aria-label="이전 페이지" class="page-zone page-zone-left" id="prev" type="button">‹</button>
+<button aria-label="다음 페이지" class="page-zone page-zone-right" id="next" type="button">›</button>
+<div class="counter"><span id="current">COVER</span><i></i><span>06</span></div>
+</section>
+
+<div class="footer-nav"><a href="pillars.html">← SEVEN PILLARS</a><a href="mansion.html">NEXT · MANSION →</a></div>
+</main>
+<script>
+(() => {
+ const A=window.AudioManager||null;
+ if(A) A.configure({basePath:'assets/sounds/'});
+ const book=document.querySelector('#familyBook');
+ const sheets=[...book.querySelectorAll('.sheet')];
+ const prev=document.querySelector('#prev'), next=document.querySelector('#next'), current=document.querySelector('#current');
+ const secret=document.querySelector('#secretOpen'), overlay=document.querySelector('#accessOverlay');
+ let page=0, locked=false, queued=null, touchX=null;
+
+ const label=()=>page===0?'COVER':page===sheets.length-1?'END':String(page).padStart(2,'0');
+ const sync=()=>{current.textContent=label();prev.disabled=page<=0;next.disabled=false;};
+ const finish=()=>{locked=false;if(queued!==null){const t=queued;queued=null;requestAnimationFrame(()=>show(t,t>page?1:-1));}};
+ const show=(requested,dir=1)=>{
+  if(requested>=sheets.length){
+   document.body.style.transition='opacity .45s ease';
+   document.body.style.opacity='0';
+   setTimeout(()=>{location.href='mansion.html';},450);
+   return;
+  }
+  const target=Math.max(0,Math.min(sheets.length-1,requested));
+  if(target===page)return;
+  if(locked){queued=target;return;}
+  locked=true;
+  const old=sheets[page], fresh=sheets[target];
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  old.classList.add('turn-out');
+  setTimeout(()=>{
+   old.classList.remove('is-active','turn-out'); old.setAttribute('aria-hidden','true');
+   fresh.classList.add('is-active'); fresh.setAttribute('aria-hidden','false');
+   if(!reduced && typeof fresh.animate==='function'){
+    try{fresh.animate(dir>0?[{transform:'rotateY(7deg) translateX(24px)',opacity:.2},{transform:'none',opacity:1}]:[{transform:'rotateY(-7deg) translateX(-24px)',opacity:.2},{transform:'none',opacity:1}],{duration:520,easing:'cubic-bezier(.2,.75,.2,1)'})}catch(_ ){}
+   }
+   page=target;sync();setTimeout(finish,reduced?0:220);
+  },reduced?0:260);
+ };
+ sync();
+
+ document.querySelector('[data-open]').addEventListener('click',()=>{
+  if(A){A.unlock();A.openBook();}
+  show(1,1);
+ });
+ prev.addEventListener('click',()=>{
+  if(A) A.albumTurn();
+  show(page-1,-1);
+ });
+ next.addEventListener('click',()=>{
+  if(A) A.albumTurn();
+  show(page+1,1);
+ });
+
+ secret.addEventListener('click',e=>{
+  e.stopPropagation();
+  if(A){
+   A.unlock();
+   A.stamp();
+  }
+  overlay.classList.add('show');overlay.setAttribute('aria-hidden','false');
+  setTimeout(()=>{
+   overlay.classList.remove('show');
+   overlay.setAttribute('aria-hidden','true');
+   show(page+1,1);
+  },1450);
+ });
+
+ book.addEventListener('click',e=>{
+  if(e.target.closest('a,button'))return;
+  const r=book.getBoundingClientRect(),x=e.clientX-r.left;
+  if(x>r.width*.54){
+   if(A) A.albumTurn();
+   show(page+1,1);
+  }else if(x<r.width*.46){
+   if(A) A.albumTurn();
+   show(page-1,-1);
+  }
+ });
+ document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){
+   e.preventDefault();
+   if(A) A.albumTurn();
+   show(page+1,1);
+  }
+  if(e.key==='ArrowLeft'){
+   e.preventDefault();
+   if(A) A.albumTurn();
+   show(page-1,-1);
+  }
+ });
+ book.addEventListener('touchstart',e=>{touchX=e.changedTouches?.[0]?.clientX??null},{passive:true});
+ book.addEventListener('touchend',e=>{
+  if(touchX===null)return;
+  const x=e.changedTouches?.[0]?.clientX;
+  if(typeof x!=='number'){touchX=null;return}
+  const dx=x-touchX;
+  touchX=null;
+  if(Math.abs(dx)<45)return;
+  if(A) A.albumTurn();
+  dx<0?show(page+1,1):show(page-1,-1);
+ },{passive:true});
+})();
+</script>
+<script>
+if(window.AudioManager){
+ AudioManager.configure({basePath:'assets/sounds/'});
+ AudioManager.bindMuteButton('#soundToggle');
+}
+</script>
+<script src="js/final-fit.js"></script>
+</body>
+</html>

@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#050505" name="theme-color"/>
+<title>The Seven Pillars — Leather Personnel Album</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+KR:wght@400;500;600&display=swap');
+:root{--bg:#030303;--ivory:#eee8dc;--muted:#9f9689;--gold:#b88a3d;--gold2:#f0d18a;--gold3:#fff0b2;--line:rgba(214,174,89,.28)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#030303;color:var(--ivory);font-family:'Noto Serif KR',serif}
+body{background:radial-gradient(circle at 50% -10%,rgba(214,174,89,.08),transparent 30%),#030303;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:radial-gradient(circle at 12% 18%,#ffe2a8 0 1px,transparent 1.2px),radial-gradient(circle at 75% 31%,#d6ae62 0 1px,transparent 1.3px);background-size:310px 280px,390px 340px;z-index:-1}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+
+.topbar{position:sticky;top:0;z-index:70;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 24px;background:rgba(3,3,3,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font:12px Cinzel,serif;letter-spacing:.18em;color:#d8b86e}
+.nav{display:flex;gap:16px;overflow:auto;white-space:nowrap}
+.nav a{font:9px Cinzel,serif;letter-spacing:.13em;color:var(--muted)}
+.nav a:hover,.nav a.active{color:var(--gold2)}
+.archive-btn{padding:8px 13px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.13em;color:var(--gold2)}
+
+.album-shell{width:min(1540px,calc(100% - 46px));margin:28px auto 72px}
+.album-heading{display:flex;justify-content:space-between;gap:16px;margin:0 8px 13px;color:#8e7956;font:8px Cinzel,serif;letter-spacing:.18em}
+.book-stage{position:relative;height:830px;min-height:830px;perspective:2600px}
+.book-shadow{position:absolute;left:8%;right:8%;bottom:0;height:10%;background:rgba(0,0,0,.8);filter:blur(36px);border-radius:50%}
+.sheet{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transform:translateX(26px) scale(.986);transition:opacity .5s ease,transform .78s cubic-bezier(.2,.75,.2,1)}
+.sheet.is-active{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+.sheet.turn-out{transform-origin:left center;transform:rotateY(-10deg) translateX(-38px) scale(.97);opacity:0}
+
+.leather-cover{position:relative;width:100%;height:830px;border:1px solid #4d351a;background:
+radial-gradient(circle at 50% 25%,rgba(143,99,32,.12),transparent 34%),
+repeating-linear-gradient(33deg,rgba(255,255,255,.012) 0 1px,transparent 1px 5px),
+repeating-linear-gradient(121deg,rgba(0,0,0,.18) 0 1px,transparent 1px 6px),
+linear-gradient(135deg,#17130f,#080707 68%);
+box-shadow:0 50px 110px rgba(0,0,0,.68),inset 0 0 0 9px #070706,inset 0 0 0 10px rgba(211,164,76,.24),inset 28px 0 40px rgba(0,0,0,.42);
+cursor:pointer;overflow:hidden;text-align:center}
+.leather-cover:before,.leather-cover:after{content:"";position:absolute;pointer-events:none}
+.leather-cover:before{inset:28px;border:1px solid rgba(224,183,96,.44)}
+.leather-cover:after{inset:40px;border:1px solid rgba(224,183,96,.15)}
+.spine{position:absolute;left:0;top:0;bottom:0;width:72px;background:linear-gradient(90deg,#050505,#15100b 55%,#060606);box-shadow:inset -1px 0 rgba(219,174,87,.18),10px 0 22px rgba(0,0,0,.34)}
+.cover-top,.cover-chapter,.cover-sub,.cover-quote,.cover-hint{position:absolute;left:50%;transform:translateX(-50%);font-family:Cinzel,serif;letter-spacing:.2em;color:#b79559}
+.cover-top{top:7%;font-size:9px}
+.cover-chapter{top:14%;font-size:10px}
+.cover-emblem{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:158px;height:158px;object-fit:contain;filter:drop-shadow(0 16px 26px rgba(0,0,0,.52)) brightness(.95)}
+.cover-title{position:absolute;left:0;right:0;top:43%;margin:0;font:700 clamp(62px,8vw,110px)/.86 Cinzel,serif;letter-spacing:.11em;background:linear-gradient(110deg,#76521f,#c99b45,#fff0ad,#9a6d2a,#e3bd67,#fff0b0,#7d5720);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 8px 24px rgba(0,0,0,.38)}
+.cover-sub{top:70%;font-size:11px}
+.cover-marks{position:absolute;top:76%;left:50%;transform:translateX(-50%);display:flex;gap:8px}
+.cover-marks i{width:48px;height:48px;border:1px solid rgba(214,174,89,.34);display:grid;place-items:center;font:normal 13px Cinzel,serif;color:#d1ad66;background:rgba(7,7,7,.35)}
+.cover-quote{bottom:10%;font-size:9px;white-space:nowrap}
+.cover-hint{bottom:4.5%;font-size:8px;animation:pulse 2.1s infinite}
+.leather-cover:hover .cover-title{animation:shine 1.7s ease}
+.leather-cover:hover{transform:translateY(-3px);transition:transform .35s ease}
+@keyframes shine{0%{background-position:110% 50%}100%{background-position:-110% 50%}}
+@keyframes pulse{50%{opacity:.42}}
+
+.spread{height:830px;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(110deg,#12100e,#080808);border:1px solid var(--line);box-shadow:0 44px 96px rgba(0,0,0,.58);overflow:hidden;position:relative}
+.spread:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(218,174,86,.2),transparent);box-shadow:-14px 0 30px rgba(0,0,0,.38),14px 0 30px rgba(0,0,0,.27);z-index:10}
+.portrait-page{margin:0;min-width:0;position:relative;background:#050505;padding:34px;display:flex;align-items:center;justify-content:center}
+.portrait-page:before{content:"";position:absolute;inset:26px;border:1px solid rgba(218,174,86,.24);z-index:2;pointer-events:none}
+.portrait-mat{width:100%;height:100%;display:grid;place-items:center;overflow:hidden;background:#050505}
+.portrait-mat img{width:78%;
+  height:78%;object-fit:contain;object-position:center;filter:brightness(.92) contrast(1.035) saturate(.92)}
+.photo-caption{position:absolute;left:50px;bottom:29px;font:7px Cinzel,serif;letter-spacing:.15em;color:#a68a58;background:rgba(5,5,5,.58);padding:7px 9px;border:1px solid rgba(218,174,86,.18)}
+
+.record-page{padding:58px clamp(38px,4.2vw,68px);display:flex;flex-direction:column;justify-content:center;background:radial-gradient(circle at 20% 20%,rgba(213,167,77,.06),transparent 26%);position:relative;min-width:0}
+.pillar-no{font:9px Cinzel,serif;letter-spacing:.23em;color:#b7904f}
+.record-page h2{font:600 clamp(30px,3.3vw,52px)/1.05 Cinzel,serif;letter-spacing:.045em;margin:16px 0 6px;overflow-wrap:anywhere}
+.record-page h3{font:9px Cinzel,serif;letter-spacing:.18em;color:#d2ae68;margin:0 0 26px}
+blockquote{margin:0 0 12px;padding-left:18px;border-left:1px solid #a97b31;font:italic clamp(19px,1.8vw,25px)/1.35 'Cormorant Garamond',serif;color:#e8dfd0}
+dl{display:grid;grid-template-columns:minmax(112px,138px) minmax(0,1fr);margin:18px 0 0;border-top:1px solid var(--line)}
+dt,dd{margin:0;padding:10px 0;border-bottom:1px solid var(--line)}
+dt{font:8px Cinzel,serif;letter-spacing:.12em;color:#b68a42}
+dd{font-size:11px;color:#d7d0c4;overflow-wrap:anywhere}
+.kr{font-size:12px;line-height:1.85;color:#aaa197;margin-top:20px;word-break:keep-all}
+.folio{position:absolute;right:34px;bottom:24px;font:7px Cinzel,serif;letter-spacing:.15em;color:#6f665a}
+
+.end-sheet{height:830px;display:grid;place-items:center;align-content:center;text-align:center;background:radial-gradient(circle at center,rgba(200,151,65,.08),transparent 34%),#080807;border:1px solid var(--line);box-shadow:0 44px 96px rgba(0,0,0,.58)}
+.end-sheet img{width:118px;height:118px;object-fit:contain;opacity:.8;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5))}
+.end-sheet span{font:9px Cinzel,serif;letter-spacing:.2em;color:#9d8050;margin-top:22px}
+.end-sheet h2{font:600 58px Cinzel,serif;letter-spacing:.12em;margin:10px 0 8px;color:#e8c675}
+.end-sheet p{line-height:2;color:#bcb3a6}
+.end-sheet a{margin-top:25px;padding:12px 18px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.15em}
+
+.page-zone{position:absolute;z-index:30;top:0;bottom:0;width:9%;border:0;background:transparent;font-size:54px;color:rgba(238,211,150,.18);cursor:pointer;transition:.3s}
+.page-zone:hover{color:#e6c276;text-shadow:0 0 18px rgba(213,169,84,.25)}
+.page-zone:disabled{opacity:.05;cursor:default;pointer-events:none}
+.page-zone-left{left:0} .page-zone-right{right:0}
+.page-counter{position:absolute;z-index:31;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font:8px Cinzel,serif;letter-spacing:.16em;color:#7f7465;pointer-events:none}
+.page-counter i{width:32px;height:1px;background:#6c5531}
+.instruction{text-align:center;color:#766c60;font-size:10px;margin:15px 0 0}
+.footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
+.footer-nav a{padding:11px 14px;border:1px solid var(--line);font:9px Cinzel,serif;letter-spacing:.12em}
+
+@media(max-width:1200px) and (min-width:1051px){
+  .record-page{padding:44px 36px}
+  .portrait-page{padding:26px}
+  .record-page h2{font-size:clamp(28px,3vw,42px)}
+}
+@media(max-width:1050px){
+  .book-stage{height:1080px;min-height:1080px}
+  .leather-cover,.end-sheet{height:1080px}
+  .spread{height:1080px;grid-template-columns:1fr;grid-template-rows:55% 45%}
+  .spread:after{display:none}
+  .portrait-page{padding:26px}
+  .record-page{padding:34px 42px}
+}
+@media(max-width:650px){
+  .topbar{padding:11px 12px}
+  .brand{display:none}
+  .album-shell{width:calc(100% - 18px);margin-top:16px}
+  .album-heading{display:none}
+  .book-stage{height:940px;min-height:940px}
+  .leather-cover,.end-sheet{height:940px}
+  .spine{width:44px}
+  .cover-emblem{width:112px;height:112px;top:22%}
+  .cover-title{font-size:52px;top:43%}
+  .cover-sub{font-size:8px}
+  .cover-marks i{width:34px;height:34px;font-size:10px}
+  .cover-quote{display:none}
+  .spread{height:940px;grid-template-rows:48% 52%}
+  .portrait-page{padding:18px}
+  .record-page{padding:24px 22px}
+  .record-page h2{font-size:30px}
+  .record-page h3{margin-bottom:14px}
+  blockquote{font-size:18px}
+  dl{grid-template-columns:90px minmax(0,1fr)}
+  .kr{font-size:11px;line-height:1.65}
+  .page-zone{width:14%}
+}
+@media(prefers-reduced-motion:reduce){.sheet{transition:none}}
+
+
+/* ===== V2 · INTRO DOSSIER BEFORE PERSONNEL PAGES ===== */
+.intro-spread .intro-page{
+  position:relative;
+  padding:clamp(44px,4.6vw,76px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+}
+.intro-page-left{
+  background:radial-gradient(circle at 25% 18%,rgba(213,167,77,.065),transparent 30%),#090908;
+}
+.intro-page-right{
+  background:linear-gradient(145deg,#13110e,#080807 72%);
+}
+.intro-kicker{
+  font:9px Cinzel,serif;
+  letter-spacing:.23em;
+  color:#b7904f;
+}
+.intro-page h2{
+  margin:16px 0 10px;
+  font:600 clamp(34px,4.2vw,66px)/1.02 Cinzel,serif;
+  letter-spacing:.065em;
+  color:#e8c875;
+}
+.intro-rule{
+  width:62%;
+  height:1px;
+  margin:22px 0 28px;
+  background:linear-gradient(90deg,#d6ad60,transparent);
+}
+.intro-en{
+  margin:0;
+  font:22px/1.75 'Cormorant Garamond',serif;
+  color:#eee5d8;
+}
+.intro-en em{color:#e4c47d}
+.intro-ko{
+  margin:24px 0 0;
+  font-size:12px;
+  line-height:1.95;
+  color:#aaa197;
+  word-break:keep-all;
+}
+.intro-ko strong{color:#dcb96b;font-weight:500}
+.intro-quote{
+  margin:18px 0 0;
+  padding-left:20px;
+  border-left:1px solid #a97b31;
+  font:italic clamp(22px,2.1vw,31px)/1.5 'Cormorant Garamond',serif;
+  color:#e8dfd0;
+}
+.intro-seal{
+  margin:44px auto 18px;
+  width:92px;height:92px;border:1px solid #9d712b;border-radius:50%;
+  display:grid;place-items:center;
+  font:600 42px Cinzel,serif;color:#d5ad5f;
+  box-shadow:inset 0 0 0 7px #090807,inset 0 0 0 8px rgba(213,167,77,.18);
+}
+.intro-foot{
+  margin-top:auto;
+  font:7px Cinzel,serif;
+  letter-spacing:.17em;
+  color:#746a5f;
+}
+.command-list{margin-top:20px}
+.command-head,.command-member{
+  padding:11px 13px;border:1px solid rgba(214,174,89,.18);
+  background:linear-gradient(145deg,#15120e,#0a0908);
+  margin-bottom:8px;
+}
+.command-head{border-color:rgba(231,196,116,.42)}
+.command-head b,.command-member b{
+  display:block;font:10px Cinzel,serif;letter-spacing:.12em;color:#e0bd70
+}
+.command-head small,.command-member small{
+  display:block;margin-top:3px;color:#8e8579;font-size:10px
+}
+.command-line{
+  text-align:center;color:#7e6741;line-height:1.3;margin:2px 0 7px
+}
+.oath-page .intro-en{font-size:24px;line-height:1.9}
+.oath-mark{
+  margin-top:38px;padding:13px 16px;border:1px solid rgba(214,174,89,.26);
+  font:8px Cinzel,serif;letter-spacing:.2em;color:#c7a35e;text-align:center
+}
+@media(max-width:1050px){
+  .intro-page{padding:34px 42px!important}
+  .intro-page h2{font-size:42px}
+  .intro-en{font-size:20px}
+}
+@media(max-width:650px){
+  .intro-page{padding:24px 22px!important}
+  .intro-page h2{font-size:30px}
+  .intro-en,.oath-page .intro-en{font-size:17px;line-height:1.7}
+  .intro-ko{font-size:11px;line-height:1.65;margin-top:14px}
+  .intro-seal{width:70px;height:70px;font-size:32px;margin-top:22px}
+  .command-head,.command-member{padding:8px 10px;margin-bottom:5px}
+}
+
+
+/* ===== V3 · INDIVIDUAL METAL EMBLEMS IN STRUCTURE ===== */
+.command-head,.command-member{
+  position:relative;
+  min-height:64px;
+  padding:11px 108px 11px 64px!important;
+  overflow:hidden;
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+}
+.command-head:hover,.command-member:hover{
+  transform:translateY(-2px);
+  border-color:rgba(240,205,126,.55)!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.32),inset 0 0 18px rgba(222,174,78,.035);
+}
+.structure-emblem{
+  position:absolute;
+  left:15px;
+  top:50%;
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  transform:translateY(-50%);
+  filter:
+    brightness(1.02)
+    contrast(1.05)
+    drop-shadow(0 0 3px rgba(239,201,111,.18));
+  transition:filter .25s ease,transform .25s ease;
+}
+.command-head:hover .structure-emblem,
+.command-member:hover .structure-emblem{
+  animation:emblemGoldPulse 1.15s ease both;
+}
+.structure-pillar-id{
+  position:absolute;
+  right:15px;
+  top:50%;
+  transform:translateY(-50%);
+  font:7px Cinzel,serif;
+  letter-spacing:.16em;
+  color:#8f7443;
+  white-space:nowrap;
+}
+.command-head b,.command-member b{
+  position:relative;
+  display:inline-block;
+  background:linear-gradient(90deg,#d0a75b,#f7dda0,#c38f37);
+  background-size:210% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent!important;
+}
+.command-head:hover b,.command-member:hover b{
+  animation:nameGoldSweep 1.2s ease both;
+}
+@keyframes emblemGoldPulse{
+  0%{
+    filter:brightness(1) contrast(1.04) drop-shadow(0 0 3px rgba(239,201,111,.18));
+    transform:translateY(-50%) scale(1);
+  }
+  45%{
+    filter:brightness(1.55) contrast(1.1) drop-shadow(0 0 10px rgba(255,218,126,.55));
+    transform:translateY(-50%) scale(1.06);
+  }
+  100%{
+    filter:brightness(1.08) contrast(1.05) drop-shadow(0 0 4px rgba(239,201,111,.24));
+    transform:translateY(-50%) scale(1);
+  }
+}
+@keyframes nameGoldSweep{
+  0%{background-position:110% 50%}
+  100%{background-position:-110% 50%}
+}
+@media(max-width:650px){
+  .command-head,.command-member{
+    min-height:58px;
+    padding:8px 72px 8px 50px!important;
+  }
+  .structure-emblem{left:10px;width:28px;height:28px}
+  .structure-pillar-id{right:9px;font-size:6px;letter-spacing:.11em}
+  .command-head b,.command-member b{font-size:9px}
+}
+
+/* ===== SEVEN PILLARS V5 · COVER TYPOGRAPHY FIX ===== */
+.leather-cover{
+  height:min(860px,92vh)!important;
+  min-height:680px!important;
+}
+
+.cover-top{
+  top:6.5%!important;
+}
+
+.cover-chapter{
+  top:12.5%!important;
+  font-size:9px!important;
+}
+
+.cover-emblem{
+  top:17.5%!important;
+  width:142px!important;
+  height:142px!important;
+}
+
+.cover-title{
+  top:39%!important;
+  font-size:clamp(54px,6.2vw,86px)!important;
+  line-height:.89!important;
+  letter-spacing:.095em!important;
+}
+
+.cover-sub{
+  top:68.5%!important;
+  font-size:9px!important;
+  letter-spacing:.17em!important;
+  white-space:nowrap;
+}
+
+.cover-marks{
+  top:74%!important;
+}
+
+.cover-quote{
+  bottom:10.5%!important;
+  font-size:8px!important;
+}
+
+.cover-hint{
+  bottom:4.2%!important;
+}
+
+/* 낮은 PC 브라우저 창에서도 겹치지 않도록 별도 보정 */
+@media (max-height:820px) and (min-width:801px){
+  .leather-cover{
+    height:94vh!important;
+    min-height:620px!important;
+  }
+  .cover-top{top:5.5%!important}
+  .cover-chapter{top:11%!important}
+  .cover-emblem{
+    top:16%!important;
+    width:118px!important;
+    height:118px!important;
+  }
+  .cover-title{
+    top:36.5%!important;
+    font-size:clamp(49px,5.5vw,76px)!important;
+    line-height:.88!important;
+  }
+  .cover-sub{
+    top:67.5%!important;
+    font-size:8px!important;
+  }
+  .cover-marks{
+    top:73%!important;
+  }
+  .cover-marks i{
+    width:40px!important;
+    height:40px!important;
+    font-size:11px!important;
+  }
+  .cover-quote{
+    bottom:9.5%!important;
+  }
+}
+
+/* 큰 모니터에서 제목이 다시 과도하게 커지는 것 방지 */
+@media (min-width:1700px){
+  .cover-title{
+    font-size:84px!important;
+  }
+}
+
+/* 모바일 표지도 세로 간격 재정렬 */
+@media(max-width:800px){
+  .leather-cover{
+    height:940px!important;
+    min-height:940px!important;
+  }
+  .cover-top{
+    top:6%!important;
+    font-size:7px!important;
+  }
+  .cover-chapter{
+    top:11.5%!important;
+    font-size:7px!important;
+  }
+  .cover-emblem{
+    top:17%!important;
+    width:104px!important;
+    height:104px!important;
+  }
+  .cover-title{
+    top:36%!important;
+    font-size:47px!important;
+    line-height:.9!important;
+    letter-spacing:.08em!important;
+  }
+  .cover-sub{
+    top:64%!important;
+    width:82%;
+    white-space:normal!important;
+    line-height:1.55;
+    font-size:7px!important;
+  }
+  .cover-marks{
+    top:70.5%!important;
+    gap:5px!important;
+  }
+  .cover-marks i{
+    width:31px!important;
+    height:31px!important;
+    font-size:9px!important;
+  }
+  .cover-quote{
+    display:block!important;
+    bottom:10%!important;
+    font-size:7px!important;
+  }
+}
+
+
+.sound-toggle{
+  position:fixed;right:16px;bottom:16px;z-index:999;
+  width:36px;height:36px;border:1px solid rgba(214,174,89,.28);
+  border-radius:50%;background:rgba(5,5,5,.78);color:#d8b86e;
+  display:grid;place-items:center;cursor:pointer;font-size:14px;
+  opacity:.72;backdrop-filter:blur(8px);transition:.2s ease;
+}
+.sound-toggle:hover{opacity:1;color:#f0d18a;border-color:rgba(240,209,138,.5)}
+@media(max-width:650px){
+  .sound-toggle{right:10px;bottom:10px;width:33px;height:33px;font-size:13px}
+}
+
+
+/* ===== LOCAL ARTBOOK · COMPACT DESKTOP FIT ===== */
+@media (min-width:1051px){
+  .album-shell{
+    width:min(1240px,calc(100% - 54px));
+    margin:20px auto 54px;
+  }
+  .book-stage{
+    height:690px;
+    min-height:690px;
+  }
+  .leather-cover,
+  .spread,
+  .end-sheet{
+    height:690px!important;
+    min-height:690px!important;
+  }
+
+  .portrait-page{padding:26px}
+  .portrait-page:before{inset:20px}
+  .photo-caption{left:40px;bottom:23px}
+
+  .record-page{
+    padding:42px clamp(32px,3.5vw,52px);
+  }
+  .record-page h2{
+    font-size:clamp(28px,2.8vw,42px);
+    margin-top:12px;
+  }
+  .record-page h3{margin-bottom:18px}
+  blockquote{font-size:clamp(17px,1.55vw,22px)}
+  dl{margin-top:12px}
+  dt,dd{padding:8px 0}
+  .kr{margin-top:14px;font-size:10.5px;line-height:1.7}
+  .folio{bottom:18px}
+
+  .intro-spread .intro-page{
+    padding:36px clamp(32px,3.4vw,50px);
+  }
+  .intro-page h2{
+    font-size:clamp(30px,3.45vw,50px);
+    margin:10px 0 7px;
+  }
+  .intro-rule{margin:15px 0 18px}
+  .intro-en{font-size:18px;line-height:1.55}
+  .intro-ko{margin-top:15px;font-size:10.5px;line-height:1.7}
+  .intro-quote{font-size:clamp(19px,1.7vw,25px);line-height:1.42}
+  .intro-seal{width:72px;height:72px;font-size:33px;margin:25px auto 12px}
+  .oath-page .intro-en{font-size:19px;line-height:1.65}
+  .oath-mark{margin-top:24px;padding:10px 13px}
+
+  .command-list{margin-top:12px}
+  .command-head,.command-member{
+    min-height:49px;
+    padding:7px 92px 7px 54px!important;
+    margin-bottom:5px;
+  }
+  .structure-emblem{left:13px;width:28px;height:28px}
+  .structure-pillar-id{right:12px;font-size:6px}
+  .command-head b,.command-member b{font-size:8.5px}
+  .command-head small,.command-member small{font-size:8.5px}
+  .command-line{line-height:1.05;margin:0 0 4px}
+
+  .cover-emblem{
+    width:112px!important;
+    height:112px!important;
+    top:16.5%!important;
+  }
+  .cover-title{
+    top:36%!important;
+    font-size:clamp(48px,5.2vw,72px)!important;
+  }
+  .cover-sub{top:67%!important}
+  .cover-marks{top:72.5%!important}
+  .cover-marks i{
+    width:38px;
+    height:38px;
+    font-size:10px;
+  }
+  .cover-quote{bottom:9.5%!important}
+}
+
+
+/* ===== SEVEN PILLARS · DETAILED MEMBER RECORDS (PILLAR II–VII ONLY) ===== */
+.member-record{
+  justify-content:flex-start;
+  padding-top:34px!important;
+  padding-bottom:30px!important;
+}
+.member-record .member-head{
+  margin-bottom:10px;
+}
+.member-record .pillar-no{
+  display:block;
+  margin-bottom:5px;
+}
+.member-record h2{
+  margin:6px 0 3px!important;
+  font-size:clamp(24px,2.45vw,36px)!important;
+}
+.member-record h3{
+  margin:0 0 5px!important;
+}
+.member-record .role-ko{
+  margin:0 0 10px;
+  font-size:10px;
+  color:#9e9487;
+}
+.member-record .record-label{
+  margin:2px 0 8px;
+  font:7px Cinzel,serif;
+  letter-spacing:.19em;
+  color:#b7904f;
+}
+.member-profile{
+  display:grid;
+  grid-template-columns:118px minmax(0,1fr);
+  border-top:1px solid var(--line);
+}
+.member-profile .k,
+.member-profile .v{
+  min-width:0;
+  padding:6px 0;
+  border-bottom:1px solid var(--line);
+}
+.member-profile .k{
+  font:7px Cinzel,serif;
+  letter-spacing:.1em;
+  color:#b68a42;
+  padding-right:12px;
+}
+.member-profile .v{
+  font-size:9.5px;
+  line-height:1.42;
+  color:#ddd4c7;
+}
+.member-profile .v .krv{
+  display:block;
+  margin-top:1px;
+  font-size:8.5px;
+  color:#91887d;
+  line-height:1.35;
+}
+.member-profile .v.signature-lines{
+  line-height:1.35;
+}
+.member-motto{
+  margin-top:10px;
+  padding:9px 12px 8px;
+  border:1px solid rgba(214,174,89,.20);
+  background:linear-gradient(145deg,#12100d,#090807);
+}
+.member-motto b{
+  display:block;
+  margin-bottom:4px;
+  font:7px Cinzel,serif;
+  letter-spacing:.18em;
+  color:#b7904f;
+}
+.member-motto q{
+  display:block;
+  font:italic 16px/1.3 'Cormorant Garamond',serif;
+  color:#eadfce;
+}
+.member-motto small{
+  display:block;
+  margin-top:3px;
+  font-size:8.5px;
+  color:#91887d;
+}
+.member-record .folio{
+  right:28px;
+  bottom:13px;
+  font-size:6px;
+}
+
+@media(max-width:1050px){
+  .member-record{
+    padding:26px 30px!important;
+  }
+  .member-profile{
+    grid-template-columns:104px minmax(0,1fr);
+  }
+  .member-profile .k,
+  .member-profile .v{
+    padding:5px 0;
+  }
+  .member-motto q{font-size:15px}
+}
+@media(max-width:650px){
+  .member-record{
+    padding:19px 18px!important;
+  }
+  .member-record h2{font-size:25px!important}
+  .member-profile{grid-template-columns:88px minmax(0,1fr)}
+  .member-profile .k{font-size:6px}
+  .member-profile .v{font-size:8.5px}
+  .member-profile .v .krv{font-size:7.8px}
+  .member-motto{margin-top:8px;padding:7px 9px}
+  .member-motto q{font-size:14px}
+}
+
+
+/* ===== MORETTI OFFICIAL ARTBOOK · FINAL VIEWPORT FIT ===== */
+@media (min-width:901px){
+  html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden!important;
+  }
+  body.moretti-final-fit main{
+    position:absolute!important;
+    left:50%!important;
+    top:var(--moretti-fit-top,56px)!important;
+    transform:translateX(-50%) scale(var(--moretti-page-scale,1))!important;
+    transform-origin:top center!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+}
+
+
+/* ===== MORETTI EMBLEM HEARTBEAT HOVER ===== */
+@keyframes morettiHeartbeat{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(218,173,78,0))}
+  10%{transform:scale(1.08);filter:drop-shadow(0 0 10px rgba(244,202,105,.55))}
+  18%{transform:scale(1)}
+  28%{transform:scale(1.045);filter:drop-shadow(0 0 7px rgba(218,173,78,.38))}
+  38%{transform:scale(1)}
+  72%{transform:scale(1)}
+}
+.moretti-emblem-pulse{
+  transform-origin:center center;
+  will-change:transform,filter;
+}
+.moretti-emblem-pulse:hover{
+  animation:morettiHeartbeat 1.55s ease-in-out infinite;
+}
+
+
+/* ===== SEVEN PILLARS · EMBLEM IDENTITY CAPTIONS ===== */
+.pillar-emblem-identity{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:10px;
+}
+.pillar-emblem-identity .identity-copy{
+  min-width:0;
+  text-align:left;
+}
+.pillar-emblem-identity .identity-en{
+  font-family:Cinzel,serif;
+  font-size:10px;
+  line-height:1.45;
+  letter-spacing:.08em;
+  color:#d8b86e;
+}
+.pillar-emblem-identity .identity-ko{
+  margin-top:4px;
+  font-size:9px;
+  line-height:1.5;
+  color:#9f9689;
+  word-break:keep-all;
+}
+
+
+/* ===== DANTE · FIRST PILLAR RECORD REVISION ===== */
+.dante-record-en{
+  color:#c7bda9;
+  font-style:italic;
+  line-height:1.65;
+}
+.dante-record-ko{
+  display:inline-block;
+  margin-top:6px;
+  color:#a99f90;
+  line-height:1.65;
+}
+
+
+/* ===== ORGANIZATION STRUCTURE · COMPACT CORRECTED ===== */
+.org-fixed-page{
+  padding:26px 54px 28px;
+  height:100%;
+  overflow:hidden;
+}
+.org-kicker{
+  font-family:Cinzel,serif;
+  font-size:10px;
+  letter-spacing:.24em;
+  color:#c99d42;
+  margin-bottom:8px;
+}
+.org-title{
+  font-family:Cinzel,serif;
+  font-size:44px;
+  line-height:.98;
+  letter-spacing:.02em;
+  color:#e4bd67;
+  margin:0 0 20px;
+}
+.org-list{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.org-card{
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  align-items:center;
+  min-height:56px;
+  padding:10px 14px;
+  border:1px solid rgba(198,153,63,.34);
+  background:rgba(255,255,255,.012);
+}
+.org-boss{
+  min-height:62px;
+  border-color:rgba(218,177,80,.52);
+}
+.org-icon{
+  font-size:16px;
+  color:#d3a84f;
+  text-align:center;
+  filter:drop-shadow(0 0 6px rgba(211,168,79,.25));
+}
+.org-main{min-width:0}
+.org-name{
+  font-family:Cinzel,serif;
+  font-size:10px;
+  letter-spacing:.14em;
+  color:#d7ad59;
+  margin-bottom:4px;
+}
+.org-roleline{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px 14px;
+}
+.org-role{
+  font-family:'Cormorant Garamond',serif;
+  font-size:12px;
+  color:#aaa194;
+}
+.org-identity{
+  font-family:Cinzel,serif;
+  font-size:9px;
+  letter-spacing:.055em;
+  color:#e0bf72;
+  opacity:.92;
+}
+.org-pillar{
+  font-family:Cinzel,serif;
+  font-size:8px;
+  letter-spacing:.13em;
+  color:#8f7440;
+  padding-left:14px;
+  white-space:nowrap;
+}
+.org-arrow{
+  height:10px;
+  line-height:10px;
+  text-align:center;
+  color:#b4893d;
+  font-size:13px;
+  margin:-1px 0 0;
+}
+@media(max-width:900px){
+  .org-fixed-page{padding:22px 28px 24px}
+  .org-title{font-size:34px}
+  .org-card{grid-template-columns:34px 1fr auto;padding:9px 10px}
+  .org-roleline{gap:5px 9px}
+  .org-role{font-size:11px}
+  .org-identity{font-size:8px}
+}
+
+
+/* ===== SEVEN PILLARS · MAIN EMBLEM + CLOCK SWEEP ===== */
+.seven-main-emblem{
+  position:absolute;left:50%;top:16.2%;transform:translateX(-50%);
+  width:255px;height:255px;z-index:3;pointer-events:none;overflow:hidden;border-radius:50%;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.62));
+}
+.seven-main-emblem img{width:100%;height:100%;object-fit:contain;display:block;filter:brightness(.92) contrast(1.05)}
+.clock-gold-sweep{
+  position:absolute;inset:-7%;border-radius:50%;
+  background:conic-gradient(from 0deg,transparent 0deg,transparent 346deg,rgba(255,210,105,0) 347deg,rgba(255,226,145,.85) 354deg,rgba(255,248,205,.98) 357deg,rgba(255,213,112,.22) 360deg);
+  mix-blend-mode:screen;opacity:.72;filter:blur(.35px);
+  animation:sevenClockSweep 10s linear infinite;
+  -webkit-mask:radial-gradient(circle,rgba(0,0,0,.98) 0 72%,rgba(0,0,0,.45) 88%,transparent 100%);
+  mask:radial-gradient(circle,rgba(0,0,0,.98) 0 72%,rgba(0,0,0,.45) 88%,transparent 100%);
+}
+.seven-main-emblem:after{content:"";position:absolute;inset:5%;border-radius:50%;box-shadow:0 0 18px rgba(239,194,92,.08);animation:sevenEmblemBreath 4.8s ease-in-out infinite}
+@keyframes sevenClockSweep{to{transform:rotate(360deg)}}
+@keyframes sevenEmblemBreath{50%{box-shadow:0 0 28px rgba(239,194,92,.18)}}
+.leather-cover:hover .clock-gold-sweep{animation-duration:6.5s;opacity:.92}
+/* emblem added: move typography down without changing wording */
+.cover-title{top:48.5%!important;font-size:clamp(48px,5.5vw,76px)!important;line-height:.88!important}
+.cover-sub{top:72.5%!important}
+.cover-marks{top:77.2%!important}
+.cover-quote{bottom:8.2%!important}
+.cover-hint{bottom:3.2%!important}
+
+/* ===== ORGANIZATION STRUCTURE · ONE-LINE ROLE + IDENTITY ===== */
+.compact-command-list{margin-top:12px!important}
+.compact-command-list .command-head,.compact-command-list .command-member{
+  min-height:52px!important;margin-bottom:5px!important;padding:7px 92px 7px 58px!important;
+}
+.compact-command-list .command-line{font-size:9px;line-height:.9;margin:0 0 4px}
+.compact-command-list .structure-emblem{left:13px;width:30px;height:30px}
+.compact-command-list .command-copy{min-width:0}
+.compact-command-list b{display:block!important;font-size:9px!important;line-height:1.15;margin:0 0 4px}
+.compact-command-list small{display:flex!important;align-items:baseline;gap:7px;margin:0!important;white-space:nowrap;line-height:1.1}
+.compact-command-list small span{font-size:8.5px;color:#9b9184}
+.compact-command-list small em{font:italic 7px 'Cormorant Garamond',serif;color:#c6a35f;letter-spacing:.02em;opacity:.9}
+.compact-command-list .structure-pillar-id{right:12px;font-size:6.5px}
+@media(max-width:800px){
+ .seven-main-emblem{top:15.5%;width:190px;height:190px}
+ .cover-title{top:43.5%!important;font-size:42px!important}
+ .cover-sub{top:64.5%!important}
+ .cover-marks{top:70%!important}
+ .compact-command-list small{white-space:normal;flex-wrap:wrap;gap:2px 6px}
+}
+
+
+/* ===== USER REVISION · SMALLER SEVEN PILLARS MAIN EMBLEM ===== */
+.seven-main-emblem{
+  width:190px!important;
+  height:190px!important;
+  top:17.5%!important;
+}
+@media(max-width:800px){
+  .seven-main-emblem{
+    width:145px!important;
+    height:145px!important;
+    top:17%!important;
+  }
+}
+
+/* ===== INNER CIRCLE · SEVEN PILLARS EMBLEM ===== */
+.inner-circle-emblem-wrap{
+  position:relative;
+  width:380px;
+  height:380px;
+  margin:12px auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  isolation:isolate;
+}
+.inner-circle-emblem{
+  width:380px;
+  height:380px;
+  object-fit:contain;
+  display:block;
+  filter:brightness(.92) drop-shadow(0 16px 28px rgba(0,0,0,.58));
+  transition:filter .35s ease, transform .35s ease;
+  position:relative;
+  z-index:1;
+}
+.inner-circle-emblem-wrap:hover .inner-circle-emblem{
+  transform:scale(1.018);
+  filter:
+    brightness(1.08)
+    drop-shadow(0 0 9px rgba(255,231,157,.34))
+    drop-shadow(0 0 22px rgba(212,164,65,.20))
+    drop-shadow(0 16px 28px rgba(0,0,0,.52));
+}
+
+/* Tiny starbursts appear around the crest only while hovering. */
+.star-sparkle{
+  position:absolute;
+  width:5px;
+  height:5px;
+  opacity:0;
+  z-index:3;
+  pointer-events:none;
+  background:#fff7d2;
+  border-radius:50%;
+  box-shadow:
+    0 0 5px #fff7d2,
+    0 0 11px rgba(255,216,111,.95),
+    0 0 20px rgba(218,165,55,.72);
+}
+.star-sparkle::before,
+.star-sparkle::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  background:linear-gradient(90deg, transparent, #fff6c8, transparent);
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+}
+.star-sparkle::before{width:25px;height:1px;}
+.star-sparkle::after{width:1px;height:25px;background:linear-gradient(180deg,transparent,#fff6c8,transparent);}
+
+.s1{left:18%;top:21%;animation-delay:.00s}
+.s2{right:17%;top:28%;animation-delay:.32s}
+.s3{left:12%;top:52%;animation-delay:.64s}
+.s4{right:11%;top:57%;animation-delay:.96s}
+.s5{left:28%;bottom:14%;animation-delay:1.28s}
+.s6{right:29%;bottom:18%;animation-delay:1.60s}
+
+.inner-circle-emblem-wrap:hover .star-sparkle{
+  animation:innerCircleTwinkle 2.05s ease-in-out infinite;
+}
+@keyframes innerCircleTwinkle{
+  0%,100%{opacity:0;transform:scale(.18) rotate(0deg)}
+  18%{opacity:.18}
+  34%{opacity:1;transform:scale(1.28) rotate(45deg)}
+  52%{opacity:.22;transform:scale(.52) rotate(80deg)}
+  70%{opacity:.92;transform:scale(.92) rotate(125deg)}
+  86%{opacity:0;transform:scale(.18) rotate(170deg)}
+}
+
+/* Keep the archive footer visible under the larger crest. */
+.intro-page-right .inner-circle-emblem-wrap + .intro-foot{
+  margin-top:-18px;
+}
+
+@media(max-width:700px){
+  .inner-circle-emblem-wrap{width:300px;height:300px;margin-top:10px}
+  .inner-circle-emblem{width:300px;height:300px}
+}
+
+
+/* ===== ORGANIZATION STRUCTURE · USER-SUPPLIED EMBLEM ART ===== */
+.compact-command-list .structure-emblem{
+  width:34px!important;
+  height:34px!important;
+  object-fit:contain!important;
+  left:10px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  filter:drop-shadow(0 0 5px rgba(229,184,86,.18));
+}
+.compact-command-list .command-head,
+.compact-command-list .command-member{
+  padding-left:54px!important;
+}
+
+
+/* ===== FINAL FIX · SEVEN PILLARS COVER · NO TEXT OVERLAP =====
+   Keeps the visual arrangement, but pins each element to its own vertical band.
+   This block intentionally comes last. */
+@media (min-width:801px){
+  .leather-cover .cover-top{
+    top:5.2%!important;
+    font-size:8px!important;
+  }
+  .leather-cover .cover-chapter{
+    top:11.2%!important;
+    font-size:9px!important;
+  }
+
+  .leather-cover .seven-main-emblem{
+    top:14.2%!important;
+    width:190px!important;
+    height:190px!important;
+  }
+
+  .leather-cover .cover-title{
+    top:43.8%!important;
+    font-size:clamp(52px,4.7vw,66px)!important;
+    line-height:.82!important;
+    letter-spacing:.105em!important;
+  }
+
+  .leather-cover .cover-sub{
+    top:69.2%!important;
+    font-size:8px!important;
+    line-height:1.25!important;
+    white-space:nowrap!important;
+  }
+
+  .leather-cover .cover-marks{
+    top:74.3%!important;
+    gap:7px!important;
+  }
+  .leather-cover .cover-marks i{
+    width:38px!important;
+    height:38px!important;
+    font-size:10px!important;
+  }
+
+  .leather-cover .cover-quote{
+    bottom:8.2%!important;
+    font-size:8px!important;
+    white-space:nowrap!important;
+  }
+
+  .leather-cover .cover-hint{
+    bottom:2.6%!important;
+    font-size:7px!important;
+    white-space:nowrap!important;
+  }
+}
+
+/* Extra safety for short desktop browser windows such as 1366×768 / 1440×768. */
+@media (min-width:801px) and (max-height:820px){
+  .leather-cover .seven-main-emblem{
+    top:13.8%!important;
+    width:176px!important;
+    height:176px!important;
+  }
+  .leather-cover .cover-title{
+    top:41.5%!important;
+    font-size:clamp(50px,4.5vw,62px)!important;
+    line-height:.81!important;
+  }
+  .leather-cover .cover-sub{
+    top:67.6%!important;
+  }
+  .leather-cover .cover-marks{
+    top:72.8%!important;
+  }
+  .leather-cover .cover-quote{
+    bottom:8.6%!important;
+  }
+  .leather-cover .cover-hint{
+    bottom:2.4%!important;
+  }
+}
+
+</style>
+</head>
+<body>
+<script src="js/audio.js"></script>
+<button id="soundToggle" class="sound-toggle" type="button" aria-label="효과음 켜기 또는 끄기">🔊</button>
+<header class="topbar">
+<a class="brand" href="index.html">⚜ MORETTI FAMILY</a>
+<nav class="nav">
+<a href="dante.html">DANTE</a>
+<a class="active" href="pillars.html">SEVEN PILLARS</a>
+<a href="family.html">FAMILY</a>
+<a href="mansion.html">MANSION</a>
+<a href="classified.html">CLASSIFIED</a>
+<a href="letter.html">SEALED LETTER</a>
+</nav>
+<a class="archive-btn" href="https://drive.google.com/file/d/1KPtaasyuG1a4rPSy5iMXDtZoOibZ9etT/view?usp=sharing" rel="noopener" target="_blank">Ω OFFICIAL ARCHIVE</a>
+</header>
+<main class="album-shell">
+<div class="album-heading">
+<span>DOSSIER III · INNER CIRCLE</span>
+<span>LEATHER PERSONNEL ALBUM · LEVEL Ω</span>
+</div>
+<section class="book-stage" data-page="0" id="pillarBook">
+<div class="book-shadow"></div>
+<article aria-hidden="false" class="sheet is-active">
+<button aria-label="세븐 필라 가죽 앨범 열기" class="leather-cover" data-open-book="" type="button">
+<span class="spine"></span>
+<span class="cover-top">MORETTI OFFICIAL ARTBOOK</span>
+<span class="cover-chapter">COLLECTOR'S PERSONNEL ALBUM · CHAPTER III</span>
+<div class="seven-main-emblem" aria-hidden="true">
+  <img src="assets/images/pillars/seven-pillars-main-emblem.png" alt=""/>
+  <span class="clock-gold-sweep"></span>
+</div>
+<h1 class="cover-title">THE<br/>SEVEN<br/>PILLARS</h1>
+<span class="cover-sub">ONE LEADER · SIX PILLARS · ONE FAMILY</span>
+<span class="cover-marks"><i>Ⅰ</i><i>Ⅱ</i><i>Ⅲ</i><i>Ⅳ</i><i>Ⅴ</i><i>Ⅵ</i><i>Ⅶ</i></span>
+<span class="cover-quote">LOYALTY · ORDER · AUTHORITY</span>
+<span class="cover-hint">CLICK ANYWHERE ON THE COVER TO OPEN</span>
+</button>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread intro-spread">
+<section class="intro-page intro-page-left">
+<span class="intro-kicker">OFFICIAL ORGANIZATION</span>
+<h2>THE SEVEN<br/>PILLARS</h2>
+<div class="intro-rule"></div>
+<p class="intro-en">
+        No empire is built by one ruler alone.<br/>
+        Behind the Head of the Moretti Family stand six unwavering figures,<br/>
+        each entrusted with a duty that cannot be replaced.<br/>
+        Together, they are known as <em>The Seven Pillars.</em>
+</p>
+<p class="intro-ko">
+        어떤 제국도 한 사람만으로 세워지지 않는다.<br/>
+        단테 모레티의 곁에는 각자의 사명을 짊어진 여섯 명의 충신이 존재한다.<br/>
+        그들을 포함한 일곱 명은<br/>
+<strong>‘모레티의 일곱 기둥’</strong>이라 불린다.
+</p>
+</section>
+<section class="intro-page intro-page-right">
+<span class="intro-kicker">OFFICIAL ARCHIVE · INNER CIRCLE</span>
+<blockquote class="intro-quote">
+        “They do not follow Dante because they must.<br/>
+        They follow because they have already chosen him.”
+      </blockquote>
+<p class="intro-ko">
+        그들은 복종하기 때문에 따르는 것이 아니다.<br/>
+        이미 단테를 자신들의 지도자로 선택했기 때문에<br/>
+        곁에 서 있는 것이다.
+      </p>
+<div class="inner-circle-emblem-wrap" aria-label="The Seven Pillars emblem">
+  <img class="inner-circle-emblem" src="assets/images/pillars/seven-pillars-main-emblem.png" alt="The Seven Pillars emblem"/>
+  <i class="star-sparkle s1"></i><i class="star-sparkle s2"></i>
+  <i class="star-sparkle s3"></i><i class="star-sparkle s4"></i>
+  <i class="star-sparkle s5"></i><i class="star-sparkle s6"></i>
+</div>
+<span class="intro-foot">MORETTI PERSONNEL ARCHIVE · ORGANIZATION FILE O-001</span>
+</section>
+</div>
+</article><article aria-hidden="true" class="sheet">
+<div class="spread intro-spread">
+<section class="intro-page intro-page-left command-page">
+<span class="intro-kicker">CHAIN OF COMMAND</span>
+<h2>ORGANIZATION<br/>STRUCTURE</h2>
+<div class="command-list compact-command-list">
+<div class="command-head"><img alt="Dante Moretti emblem" class="structure-emblem" src="assets/images/pillars/emblem-dante.webp"/><div class="command-copy"><b>DANTE MORETTI</b><small><span>Head of the Moretti Family</span><em>The Heart of the Moretti Family.</em></small></div><span class="structure-pillar-id">PILLAR I</span></div>
+<div class="command-line">│<br/>▼</div>
+<div class="command-member"><img alt="Marco Bellini emblem" class="structure-emblem" src="assets/images/pillars/emblem-marco.webp"/><div class="command-copy"><b>MARCO BELLINI</b><small><span>Underboss · 부보스</span><em>The Shield Beside the Throne.</em></small></div><span class="structure-pillar-id">PILLAR II</span></div>
+<div class="command-member"><img alt="Alessandro Ricci emblem" class="structure-emblem" src="assets/images/pillars/emblem-alessandro.webp"/><div class="command-copy"><b>ALESSANDRO RICCI</b><small><span>Captain · 경호대장</span><em>The Wall No Threat Crosses.</em></small></div><span class="structure-pillar-id">PILLAR III</span></div>
+<div class="command-member"><img alt="Cesare Bianchi emblem" class="structure-emblem" src="assets/images/pillars/emblem-cesare.webp"/><div class="command-copy"><b>CESARE BIANCHI</b><small><span>Consigliere · 고문</span><em>The Mind Behind Every Move.</em></small></div><span class="structure-pillar-id">PILLAR IV</span></div>
+<div class="command-member"><img alt="Elena Rossi emblem" class="structure-emblem" src="assets/images/pillars/emblem-elena.webp"/><div class="command-copy"><b>ELENA ROSSI</b><small><span>Chief Secretary · 수석비서</span><em>Precision Given Form.</em></small></div><span class="structure-pillar-id">PILLAR V</span></div>
+<div class="command-member"><img alt="Vittorio Romano emblem" class="structure-emblem" src="assets/images/pillars/emblem-vittorio.webp"/><div class="command-copy"><b>VITTORIO ROMANO</b><small><span>Chief Butler · 총집사</span><em>The Hand That Holds the House Together.</em></small></div><span class="structure-pillar-id">PILLAR VI</span></div>
+<div class="command-member"><img alt="Matteo Ferraro emblem" class="structure-emblem" src="assets/images/pillars/emblem-matteo.webp"/><div class="command-copy"><b>MATTEO FERRARO</b><small><span>Chief Financial Officer · 재무 책임자</span><em>The Fortune Behind the Family.</em></small></div><span class="structure-pillar-id">PILLAR VII</span></div>
+</div>
+</section>
+<section class="intro-page intro-page-right oath-page">
+<span class="intro-kicker">OFFICIAL OATH</span>
+<h2>THE OATH</h2>
+<div class="intro-rule"></div>
+<p class="intro-en">
+        Every Pillar has sworn the same oath.<br/>
+        To protect the Family.<br/>
+        To preserve its honor.<br/>
+        And to stand beside its Head,<br/>
+        no matter what tomorrow may bring.
+      </p>
+<p class="intro-ko">
+        일곱 기둥은 모두 같은 맹세를 했다.<br/>
+        가문을 지키고, 명예를 이어가며,<br/>
+        어떤 미래가 오더라도<br/>
+        가주의 곁을 떠나지 않겠다는 맹세.
+      </p>
+<div class="oath-mark">LOYALTY · ORDER · AUTHORITY</div>
+</section>
+</div>
+</article><article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="portrait-page">
+<div class="portrait-mat">
+<img alt="Dante Moretti" referrerpolicy="no-referrer" src="assets/images/pillars/dante.webp"/>
+</div>
+<span class="photo-caption">PILLAR I · OFFICIAL PERSONNEL PORTRAIT</span>
+</figure>
+<section class="record-page">
+<span class="pillar-no">PILLAR I</span>
+<h2>DANTE MORETTI</h2>
+<h3>CAPO DI TUTTI CAPI</h3>
+<blockquote>“A family bound by more than blood. I chose them, yet their loyalty feels like an oath sworn long before any of us can remember.”</blockquote>
+<dl>
+<dt>Presence</dt><dd>Commanding · Unquestioned</dd>
+<dt>Sovereignty</dt><dd>Absolute</dd>
+<dt>Influence</dt><dd>Underworld · Political · Financial</dd>
+<dt>Allegiance</dt><dd>The Seven Pillars</dd>
+</dl>
+<p class="kr">제1기둥은 칠기둥의 중심에 선다. 그의 권위는 직책만으로 만들어진 것이 아니라, 존재감과 가문의 유산, 그리고 곁을 지키는 이들의 충성으로 완성된다.</p>
+<div class="folio">MORETTI PERSONNEL ALBUM · PILLAR I</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="portrait-page">
+<div class="portrait-mat">
+<img alt="Marco Bellini" referrerpolicy="no-referrer" src="assets/images/pillars/marco.webp"/>
+</div>
+<span class="photo-caption">PILLAR II · OFFICIAL PERSONNEL PORTRAIT</span>
+</figure>
+<section class="record-page member-record">
+<div class="member-head">
+<span class="pillar-no">PILLAR II</span>
+<h2>MARCO BELLINI</h2>
+<h3>UNDERBOSS</h3>
+<p class="role-ko">부보스</p>
+<div class="record-label">OFFICIAL MEMBER RECORD</div>
+</div>
+<div class="member-profile">
+<div class="k">Age</div><div class="v">37</div><div class="k">Hair</div><div class="v">Dark Brown<span class="krv">짙은 갈색 올백</span></div><div class="k">Eyes</div><div class="v">Brown<span class="krv">갈색</span></div><div class="k">Height</div><div class="v">193 cm</div><div class="k">Build</div><div class="v">Muscular Athletic<span class="krv">탄탄한 근육질 체형</span></div><div class="k">Style</div><div class="v">Luxury Suit & Long Coat<span class="krv">최고급 블랙 수트 & 롱코트</span></div><div class="k">Aura</div><div class="v">Loyal Guardian<span class="krv">충직한 수호자</span></div><div class="k">Representative Color</div><div class="v">Black × Dark Brown<span class="krv">블랙 × 다크 브라운</span></div><div class="k">Signature</div><div class="v signature-lines">Long Coat<br/>Leather Gloves<br/>Eagle Emblem<span class="krv">롱코트<br/>가죽 장갑<br/>독수리 문장</span></div>
+</div>
+<div class="member-motto">
+<b>MOTTO</b>
+<q>Loyalty Above Life.</q>
+<small>충성은 목숨보다 위에 존재한다.</small>
+</div>
+<div class="folio">MORETTI PERSONNEL ALBUM · PILLAR II</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="portrait-page">
+<div class="portrait-mat">
+<img alt="Alessandro Ricci" referrerpolicy="no-referrer" src="assets/images/pillars/alessandro.webp"/>
+</div>
+<span class="photo-caption">PILLAR III · OFFICIAL PERSONNEL PORTRAIT</span>
+</figure>
+<section class="record-page member-record">
+<div class="member-head">
+<span class="pillar-no">PILLAR III</span>
+<h2>ALESSANDRO RICCI</h2>
+<h3>CAPTAIN</h3>
+<p class="role-ko">경호대장</p>
+<div class="record-label">OFFICIAL MEMBER RECORD</div>
+</div>
+<div class="member-profile">
+<div class="k">Age</div><div class="v">40</div><div class="k">Hair</div><div class="v">Jet Black<span class="krv">짙은 흑발</span></div><div class="k">Eyes</div><div class="v">Steel Gray<span class="krv">강철빛 회색</span></div><div class="k">Height</div><div class="v">190 cm</div><div class="k">Build</div><div class="v">Athletic Muscular<span class="krv">탄탄한 근육질 체형</span></div><div class="k">Style</div><div class="v">Executive Guard Suit<span class="krv">경호 전용 블랙 수트</span></div><div class="k">Aura</div><div class="v">Absolute Protection<span class="krv">절대적인 수호자</span></div><div class="k">Representative Color</div><div class="v">Black × Steel Gray<span class="krv">블랙 × 스틸 그레이</span></div><div class="k">Signature</div><div class="v signature-lines">Black Gloves<br/>Earpiece<br/>Holster<span class="krv">블랙 장갑<br/>무전 이어피스<br/>권총 홀스터</span></div>
+</div>
+<div class="member-motto">
+<b>MOTTO</b>
+<q>Nothing Gets Past Me.</q>
+<small>어떠한 위험도 내 곁을 지나갈 수 없다.</small>
+</div>
+<div class="folio">MORETTI PERSONNEL ALBUM · PILLAR III</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="portrait-page">
+<div class="portrait-mat">
+<img alt="Cesare Bianchi" referrerpolicy="no-referrer" src="assets/images/pillars/cesare.webp"/>
+</div>
+<span class="photo-caption">PILLAR IV · OFFICIAL PERSONNEL PORTRAIT</span>
+</figure>
+<section class="record-page member-record">
+<div class="member-head">
+<span class="pillar-no">PILLAR IV</span>
+<h2>CESARE BIANCHI</h2>
+<h3>CONSIGLIERE</h3>
+<p class="role-ko">고문</p>
+<div class="record-label">OFFICIAL MEMBER RECORD</div>
+</div>
+<div class="member-profile">
+<div class="k">Age</div><div class="v">45</div><div class="k">Hair</div><div class="v">Ash Blonde<span class="krv">애쉬 블론드</span></div><div class="k">Eyes</div><div class="v">Ice Blue<span class="krv">빙청색</span></div><div class="k">Height</div><div class="v">181 cm</div><div class="k">Build</div><div class="v">Slim Elegant<span class="krv">슬림하고 우아한 체형</span></div><div class="k">Style</div><div class="v">Classic Three-piece Suit<span class="krv">클래식 쓰리피스 수트</span></div><div class="k">Aura</div><div class="v">Calm Strategist<span class="krv">냉철한 전략가</span></div><div class="k">Representative Color</div><div class="v">Navy × Gold<span class="krv">네이비 × 골드</span></div><div class="k">Signature</div><div class="v signature-lines">Pocket Watch<br/>Leather Notebook<br/>Fountain Pen<span class="krv">회중시계<br/>가죽 수첩<br/>만년필</span></div>
+</div>
+<div class="member-motto">
+<b>MOTTO</b>
+<q>Every Move Has a Price.</q>
+<small>모든 선택에는 반드시 대가가 따른다.</small>
+</div>
+<div class="folio">MORETTI PERSONNEL ALBUM · PILLAR IV</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="portrait-page">
+<div class="portrait-mat">
+<img alt="Elena Rossi" referrerpolicy="no-referrer" src="assets/images/pillars/elena.webp"/>
+</div>
+<span class="photo-caption">PILLAR V · OFFICIAL PERSONNEL PORTRAIT</span>
+</figure>
+<section class="record-page member-record">
+<div class="member-head">
+<span class="pillar-no">PILLAR V</span>
+<h2>ELENA ROSSI</h2>
+<h3>CHIEF SECRETARY</h3>
+<p class="role-ko">수석비서</p>
+<div class="record-label">OFFICIAL MEMBER RECORD</div>
+</div>
+<div class="member-profile">
+<div class="k">Age</div><div class="v">31</div><div class="k">Hair</div><div class="v">Dark Brown Low Ponytail<span class="krv">짙은 갈색 로우 포니테일</span></div><div class="k">Eyes</div><div class="v">Amber<span class="krv">앰버</span></div><div class="k">Height</div><div class="v">172 cm</div><div class="k">Build</div><div class="v">Slim Elegant<span class="krv">슬림하고 우아한 체형</span></div><div class="k">Style</div><div class="v">Luxury Secretary Suit<span class="krv">럭셔리 비서 수트</span></div><div class="k">Aura</div><div class="v">Perfect Professional<span class="krv">완벽한 프로페셔널</span></div><div class="k">Representative Color</div><div class="v">Black × Burgundy<span class="krv">블랙 × 버건디</span></div><div class="k">Signature</div><div class="v signature-lines">Tablet PC<br/>Leather Planner<br/>Silver Glasses<span class="krv">태블릿 PC<br/>가죽 플래너<br/>실버 안경</span></div>
+</div>
+<div class="member-motto">
+<b>MOTTO</b>
+<q>Perfection Is My Duty.</q>
+<small>완벽함은 나의 의무이다.</small>
+</div>
+<div class="folio">MORETTI PERSONNEL ALBUM · PILLAR V</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="portrait-page">
+<div class="portrait-mat">
+<img alt="Vittorio Romano" referrerpolicy="no-referrer" src="assets/images/pillars/vittorio.webp"/>
+</div>
+<span class="photo-caption">PILLAR VI · OFFICIAL PERSONNEL PORTRAIT</span>
+</figure>
+<section class="record-page member-record">
+<div class="member-head">
+<span class="pillar-no">PILLAR VI</span>
+<h2>VITTORIO ROMANO</h2>
+<h3>CHIEF BUTLER</h3>
+<p class="role-ko">총집사</p>
+<div class="record-label">OFFICIAL MEMBER RECORD</div>
+</div>
+<div class="member-profile">
+<div class="k">Age</div><div class="v">60</div><div class="k">Hair</div><div class="v">Silver White<span class="krv">은백색 헤어</span></div><div class="k">Eyes</div><div class="v">Warm Gray<span class="krv">따뜻한 회색</span></div><div class="k">Height</div><div class="v">178 cm</div><div class="k">Build</div><div class="v">Refined Gentleman<span class="krv">품격 있는 신사 체형</span></div><div class="k">Style</div><div class="v">Classic Butler Uniform<span class="krv">클래식 버틀러 유니폼</span></div><div class="k">Aura</div><div class="v">Gentle Wisdom<span class="krv">온화한 지혜</span></div><div class="k">Representative Color</div><div class="v">Black × Silver<span class="krv">블랙 × 실버</span></div><div class="k">Signature</div><div class="v signature-lines">White Gloves<br/>Silver Tray<br/>Pocket Watch<span class="krv">화이트 장갑<br/>실버 트레이<br/>회중시계</span></div>
+</div>
+<div class="member-motto">
+<b>MOTTO</b>
+<q>A Home Is Built by Those Who Care.</q>
+<small>집은 아끼는 사람들이 만들어 간다.</small>
+</div>
+<div class="folio">MORETTI PERSONNEL ALBUM · PILLAR VI</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="spread">
+<figure class="portrait-page">
+<div class="portrait-mat">
+<img alt="Matteo Ferraro" referrerpolicy="no-referrer" src="assets/images/pillars/matteo.webp"/>
+</div>
+<span class="photo-caption">PILLAR VII · OFFICIAL PERSONNEL PORTRAIT</span>
+</figure>
+<section class="record-page member-record">
+<div class="member-head">
+<span class="pillar-no">PILLAR VII</span>
+<h2>MATTEO FERRARO</h2>
+<h3>CHIEF FINANCIAL OFFICER</h3>
+<p class="role-ko">재무 책임자</p>
+<div class="record-label">OFFICIAL MEMBER RECORD</div>
+</div>
+<div class="member-profile">
+<div class="k">Age</div><div class="v">33</div><div class="k">Hair</div><div class="v">Auburn Wavy Hair<span class="krv">적갈색 웨이브 헤어</span></div><div class="k">Eyes</div><div class="v">Emerald Green<span class="krv">에메랄드 그린</span></div><div class="k">Height</div><div class="v">186 cm</div><div class="k">Build</div><div class="v">Charismatic Gentleman<span class="krv">균형 잡힌 신사 체형</span></div><div class="k">Style</div><div class="v">Luxury Business Suit<span class="krv">럭셔리 비즈니스 수트</span></div><div class="k">Aura</div><div class="v">Financial Genius<span class="krv">냉철한 재무 전략가</span></div><div class="k">Representative Color</div><div class="v">Emerald × Gold<span class="krv">에메랄드 × 골드</span></div><div class="k">Signature</div><div class="v signature-lines">Ledger<br/>Gold Fountain Pen<br/>Cufflinks<span class="krv">장부<br/>골드 만년필<br/>커프스 링크</span></div>
+</div>
+<div class="member-motto">
+<b>MOTTO</b>
+<q>Fortune Favors the Prepared.</q>
+<small>행운은 준비된 자의 편이다.</small>
+</div>
+<div class="folio">MORETTI PERSONNEL ALBUM · PILLAR VII</div>
+</section>
+</div>
+</article>
+<article aria-hidden="true" class="sheet">
+<div class="end-sheet">
+<span>END OF PERSONNEL ALBUM</span>
+<h2>THE SEVEN PILLARS</h2>
+<p>일곱 개의 기둥은 서로를 대신할 수 없지만,<br/>서로를 완성할 수는 있다.</p>
+<a href="family.html">NEXT · MORETTI FAMILY →</a>
+</div>
+</article>
+<button aria-label="이전 페이지" class="page-zone page-zone-left" id="pillarPrev" type="button">‹</button>
+<button aria-label="다음 페이지" class="page-zone page-zone-right" id="pillarNext" type="button">›</button>
+<div class="page-counter"><span id="pillarCurrent">COVER</span><i></i><span>09</span></div>
+</section>
+
+<div class="footer-nav">
+<a href="dante.html">← DANTE</a>
+<a href="family.html">NEXT · FAMILY →</a>
+</div>
+</main>
+<script>
+(() => {
+  const A=window.AudioManager||null;
+  if(A) A.configure({basePath:'assets/sounds/'});
+  const book=document.querySelector('#pillarBook');
+  const sheets=[...book.querySelectorAll('.sheet')];
+  const prev=document.querySelector('#pillarPrev');
+  const next=document.querySelector('#pillarNext');
+  const current=document.querySelector('#pillarCurrent');
+  let page=0, locked=false, queued=null, touchStartX=null;
+
+  const label=()=>page===0?'COVER':(page===sheets.length-1?'END':String(page).padStart(2,'0'));
+
+  const sync=()=>{
+    current.textContent=label();
+    prev.disabled=page<=0;
+    next.disabled=false;
+    book.dataset.page=String(page);
+  };
+
+  const finish=()=>{
+    locked=false;
+    if(queued!==null){
+      const target=queued; queued=null;
+      requestAnimationFrame(()=>show(target,target>page?1:-1));
+    }
+  };
+
+  const show=(requested,dir=1)=>{
+    if(requested>=sheets.length){
+      document.body.style.transition='opacity .45s ease';
+      document.body.style.opacity='0';
+      setTimeout(()=>{ location.href='family.html'; },450);
+      return;
+    }
+    const target=Math.max(0,Math.min(sheets.length-1,requested));
+    if(target===page)return;
+    if(locked){queued=target;return;}
+    locked=true;
+
+    const old=sheets[page];
+    const fresh=sheets[target];
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    old.classList.add('turn-out');
+
+    setTimeout(()=>{
+      old.classList.remove('is-active','turn-out');
+      old.setAttribute('aria-hidden','true');
+      fresh.classList.add('is-active');
+      fresh.setAttribute('aria-hidden','false');
+
+      if(!reduced && typeof fresh.animate==='function'){
+        try{
+          fresh.animate(
+            dir>0
+              ? [{transform:'rotateY(8deg) translateX(26px)',opacity:.18},{transform:'none',opacity:1}]
+              : [{transform:'rotateY(-8deg) translateX(-26px)',opacity:.18},{transform:'none',opacity:1}],
+            {duration:560,easing:'cubic-bezier(.2,.75,.2,1)'}
+          );
+        }catch(_){
+        }
+      }
+
+      page=target;
+      sync();
+      setTimeout(finish,reduced?0:230);
+    },reduced?0:280);
+  };
+
+  sync();
+
+  document.querySelector('[data-open-book]').addEventListener('click',e=>{
+    e.preventDefault();
+    if(A){
+      A.unlock();
+      A.openBook();
+    }
+    show(1,1);
+  });
+  prev.addEventListener('click',e=>{
+    e.preventDefault();
+    if(A) A.pageTurnHeavy();
+    show(page-1,-1);
+  });
+  next.addEventListener('click',e=>{
+    e.preventDefault();
+    if(A) A.pageTurnHeavy();
+    show(page+1,1);
+  });
+
+  book.addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    const r=book.getBoundingClientRect();
+    const x=e.clientX-r.left;
+    if(x>r.width*.54){
+      if(A) A.pageTurnHeavy();
+      show(page+1,1);
+    }else if(x<r.width*.46){
+      if(A) A.pageTurnHeavy();
+      show(page-1,-1);
+    }
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'){
+      e.preventDefault();
+      if(A) A.pageTurnHeavy();
+      show(page+1,1);
+    }
+    if(e.key==='ArrowLeft'){
+      e.preventDefault();
+      if(A) A.pageTurnHeavy();
+      show(page-1,-1);
+    }
+  });
+
+  book.addEventListener('touchstart',e=>{
+    touchStartX=e.changedTouches?.[0]?.clientX??null;
+  },{passive:true});
+
+  book.addEventListener('touchend',e=>{
+    if(touchStartX===null)return;
+    const endX=e.changedTouches?.[0]?.clientX;
+    if(typeof endX!=='number'){touchStartX=null;return;}
+    const dx=endX-touchStartX;
+    touchStartX=null;
+    if(Math.abs(dx)<45)return;
+    if(A) A.pageTurnHeavy();
+    if(dx<0)show(page+1,1);
+    else show(page-1,-1);
+  },{passive:true});
+})();
+</script>
+<script>
+if(window.AudioManager){
+  AudioManager.configure({basePath:'assets/sounds/'});
+  AudioManager.bindMuteButton('#soundToggle');
+}
+</script>
+<script src="js/final-fit.js"></script>
+</body>
+</html>

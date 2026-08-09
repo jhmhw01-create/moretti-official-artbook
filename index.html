@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#030303" name="theme-color"/>
+<title>Moretti Official Artbook — Collector's Edition</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+KR:wght@400;500;600&display=swap');
+:root{--gold:#b88a3d;--gold2:#f1d18a;--ivory:#eee8dc;--muted:#9f9689;--line:rgba(214,174,89,.28)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#030303;color:var(--ivory);font-family:'Noto Serif KR',serif}
+body{overflow-x:hidden;background:radial-gradient(circle at 50% -12%,rgba(214,174,89,.09),transparent 32%),#030303}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:radial-gradient(circle at 12% 18%,#ffe2a8 0 1px,transparent 1.2px),radial-gradient(circle at 75% 31%,#d6ae62 0 1px,transparent 1.3px);background-size:310px 280px,390px 340px}
+a{color:inherit;text-decoration:none} img{display:block;max-width:100%}
+.cover-shell{min-height:100vh;display:grid;place-items:center;padding:30px}
+.cover{position:relative;width:min(1460px,96vw);height:min(850px,90vh);min-height:650px;border:1px solid #4e371b;background:radial-gradient(circle at 50% 25%,rgba(151,105,35,.13),transparent 34%),repeating-linear-gradient(33deg,rgba(255,255,255,.012) 0 1px,transparent 1px 5px),repeating-linear-gradient(121deg,rgba(0,0,0,.18) 0 1px,transparent 1px 6px),linear-gradient(135deg,#17130f,#060606 70%);box-shadow:0 55px 120px rgba(0,0,0,.7),inset 0 0 0 9px #070706,inset 0 0 0 10px rgba(211,164,76,.24);overflow:hidden;text-align:center;cursor:pointer}
+.cover:before,.cover:after{content:"";position:absolute;pointer-events:none}
+.cover:before{inset:28px;border:1px solid rgba(224,183,96,.45)} .cover:after{inset:41px;border:1px solid rgba(224,183,96,.14)}
+.emblem{position:absolute;top:14%;left:50%;transform:translateX(-50%);width:165px;height:165px;object-fit:contain;filter:drop-shadow(0 16px 28px rgba(0,0,0,.55))}
+.kicker,.edition,.hint{position:absolute;left:50%;transform:translateX(-50%);font:9px Cinzel,serif;letter-spacing:.22em;color:#ad8d56;white-space:nowrap}
+.kicker{top:7%}.edition{top:34%;font-size:10px}
+h1{position:absolute;top:41%;left:0;right:0;margin:0;font:700 clamp(58px,7.6vw,112px)/.88 Cinzel,serif;letter-spacing:.105em;background:linear-gradient(110deg,#76521f,#c99b45,#fff0ad,#9a6d2a,#e3bd67,#fff0b0,#7d5720);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{position:absolute;top:70%;left:0;right:0;font:10px Cinzel,serif;letter-spacing:.2em;color:#a88a56}
+.motto{position:absolute;top:77%;left:0;right:0;font:italic 23px 'Cormorant Garamond',serif;color:#d8cfc1}
+.hint{bottom:5%;font-size:8px;animation:pulse 2s infinite}
+.cover:hover h1{animation:shine 1.7s ease}
+@keyframes shine{0%{background-position:110% 50%}100%{background-position:-110% 50%}}@keyframes pulse{50%{opacity:.42}}
+.contents{display:none;min-height:100vh;padding:60px 28px 90px;opacity:0;transition:opacity .7s ease}
+.contents.show{display:block;opacity:1}
+.contents-inner{width:min(1440px,100%);margin:auto}
+.contents-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:38px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:30px}
+.contents-head h2{margin:0;font:600 clamp(42px,5vw,76px)/.95 Cinzel,serif;letter-spacing:.09em;color:#e7c574}
+.contents-copy{font:20px/1.7 'Cormorant Garamond',serif;color:#bfb6a9}
+.chapters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
+.chapter{position:relative;min-height:190px;padding:28px 30px;border:1px solid var(--line);background:linear-gradient(145deg,#13110e,#080807);overflow:hidden;transition:.32s}
+.chapter:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 28%,rgba(255,232,165,.17) 48%,transparent 65%);transform:translateX(-120%);pointer-events:none}
+.chapter:hover{transform:translateY(-3px);border-color:rgba(238,203,124,.55);box-shadow:0 24px 46px rgba(0,0,0,.34)}.chapter:hover:after{animation:sweep 1.15s ease}
+@keyframes sweep{to{transform:translateX(120%)}}
+.no{font:8px Cinzel,serif;letter-spacing:.18em;color:#876d42}
+.chapter h3{margin:13px 0 7px;font:600 clamp(25px,3vw,40px) Cinzel,serif;letter-spacing:.06em;color:#e0bd70}
+.chapter p{margin:0;color:#999083;font-size:11px;line-height:1.8}
+.chapter.disabled{opacity:.38;pointer-events:none}
+.archive{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:120px}
+.archive strong{font:600 26px Cinzel,serif;letter-spacing:.09em;color:#e5c16f}
+.archive span{font:8px Cinzel,serif;letter-spacing:.18em;color:#8f7952}
+.footer{margin-top:44px;text-align:center;font:8px Cinzel,serif;letter-spacing:.19em;color:#655d53}
+@media(max-width:800px){
+ .cover{height:760px;min-height:760px}.emblem{width:120px;height:120px;top:16%}h1{font-size:54px;top:43%}.edition{top:36%}.motto{font-size:19px;padding:0 18px}
+ .contents-head{grid-template-columns:1fr}.chapters{grid-template-columns:1fr}.archive{grid-column:auto;display:block}
+}
+
+
+/* ===== INDEX COVER V2 · TITLE OVERLAP FIX ===== */
+/* PC 가로 화면에서 제목/서브타이틀/모토가 서로 겹치지 않도록
+   표지의 세로 배치를 다시 조정한다. */
+.cover{
+  height:min(880px,92vh)!important;
+  min-height:680px!important;
+}
+
+.emblem{
+  top:12.5%!important;
+  width:148px!important;
+  height:148px!important;
+}
+
+.edition{
+  top:32.5%!important;
+}
+
+.cover h1{
+  top:38%!important;
+  font-size:clamp(54px,6vw,90px)!important;
+  line-height:.91!important;
+  letter-spacing:.095em!important;
+}
+
+.sub{
+  top:70%!important;
+  font-size:9px!important;
+}
+
+.motto{
+  top:76%!important;
+  font-size:21px!important;
+}
+
+.hint{
+  bottom:4.5%!important;
+}
+
+/* 높이가 낮은 와이드 모니터/브라우저 창 대응 */
+@media (max-height:820px) and (min-width:801px){
+  .cover{
+    height:94vh!important;
+    min-height:620px!important;
+  }
+  .emblem{
+    top:10.5%!important;
+    width:128px!important;
+    height:128px!important;
+  }
+  .edition{top:29%!important}
+  .cover h1{
+    top:35%!important;
+    font-size:clamp(50px,5.5vw,80px)!important;
+    line-height:.90!important;
+  }
+  .sub{top:69%!important}
+  .motto{top:75%!important;font-size:19px!important}
+}
+
+/* 아주 넓은 2K/4K 화면에서는 제목이 과도하게 커지지 않도록 제한 */
+@media (min-width:1700px){
+  .cover h1{
+    font-size:88px!important;
+  }
+}
+
+/* 모바일 */
+@media(max-width:800px){
+  .cover{
+    height:760px!important;
+    min-height:760px!important;
+  }
+  .emblem{
+    width:110px!important;
+    height:110px!important;
+    top:13%!important;
+  }
+  .edition{
+    top:31%!important;
+    font-size:8px!important;
+  }
+  .cover h1{
+    top:38%!important;
+    font-size:48px!important;
+    line-height:.92!important;
+    letter-spacing:.08em!important;
+  }
+  .sub{
+    top:68%!important;
+    padding:0 18px;
+    white-space:normal;
+    line-height:1.6;
+  }
+  .motto{
+    top:76%!important;
+    font-size:18px!important;
+    padding:0 18px;
+  }
+}
+
+/* ===== INDEX AUDIO MASTER V1 ===== */
+.sound-toggle{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:999;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(214,174,89,.30);
+  border-radius:50%;
+  background:rgba(5,5,5,.86);
+  color:#d8b86e;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  font-size:17px;
+  box-shadow:0 10px 28px rgba(0,0,0,.36);
+  backdrop-filter:blur(10px);
+  transition:.2s ease;
+}
+.sound-toggle:hover{
+  transform:translateY(-2px);
+  border-color:rgba(240,209,138,.62);
+  color:#f0d18a;
+}
+.sound-toggle:focus-visible{
+  outline:1px solid #f0d18a;
+  outline-offset:3px;
+}
+@media(max-width:650px){
+  .sound-toggle{right:12px;bottom:12px;width:38px;height:38px;font-size:15px}
+}
+
+
+/* ===== INDEX V2 · EMBLEM HOVER RESTORE ===== */
+.emblem-wrap{
+  position:absolute;
+  top:12.5%;
+  left:50%;
+  transform:translateX(-50%);
+  width:148px;
+  height:148px;
+  display:grid;
+  place-items:center;
+  overflow:visible;
+  z-index:4;
+  pointer-events:none;
+}
+
+.emblem-wrap .emblem{
+  position:relative!important;
+  top:auto!important;
+  left:auto!important;
+  width:100%!important;
+  height:100%!important;
+  transform:none!important;
+  object-fit:contain;
+  filter:
+    drop-shadow(0 16px 28px rgba(0,0,0,.55))
+    drop-shadow(0 0 0 rgba(236,196,102,0));
+  transition:
+    transform .48s cubic-bezier(.2,.75,.2,1),
+    filter .48s ease;
+  will-change:transform,filter;
+}
+
+.emblem-shine{
+  position:absolute;
+  inset:-18%;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(
+      112deg,
+      transparent 30%,
+      rgba(255,236,173,.02) 39%,
+      rgba(255,240,186,.70) 49%,
+      rgba(218,174,84,.22) 55%,
+      transparent 66%
+    );
+  transform:translateX(-135%) skewX(-10deg);
+  mix-blend-mode:screen;
+}
+
+.cover:hover .emblem-wrap .emblem{
+  transform:scale(1.09)!important;
+  filter:
+    drop-shadow(0 18px 30px rgba(0,0,0,.60))
+    drop-shadow(0 0 11px rgba(240,202,112,.58))
+    drop-shadow(0 0 28px rgba(193,139,48,.28));
+}
+
+.cover:hover .emblem-shine{
+  animation:emblemGoldSweep 1.35s cubic-bezier(.2,.72,.2,1);
+}
+
+.cover:active .emblem-wrap .emblem{
+  transform:scale(1.025)!important;
+  transition-duration:.12s;
+}
+
+@keyframes emblemGoldSweep{
+  0%{
+    opacity:0;
+    transform:translateX(-135%) skewX(-10deg);
+  }
+  18%{opacity:.78}
+  70%{opacity:.52}
+  100%{
+    opacity:0;
+    transform:translateX(135%) skewX(-10deg);
+  }
+}
+
+/* Match the existing responsive cover layout */
+@media (max-height:820px) and (min-width:801px){
+  .emblem-wrap{
+    top:10.5%;
+    width:128px;
+    height:128px;
+  }
+}
+
+@media(max-width:800px){
+  .emblem-wrap{
+    top:13%;
+    width:110px;
+    height:110px;
+  }
+  /* No hover-dependent reveal on touch devices; keep a subtle static glow */
+  @media (hover:none){
+    .emblem-wrap .emblem{
+      filter:
+        drop-shadow(0 14px 24px rgba(0,0,0,.52))
+        drop-shadow(0 0 9px rgba(222,179,87,.22));
+    }
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .emblem-wrap .emblem{transition:none}
+  .cover:hover .emblem-shine{animation:none}
+}
+
+
+/* ===== INDEX V3 · EMBLEM / TEXT SPACING FIX ===== */
+/* 엠블럼 하단과 COLLECTOR'S EDITION 문구가 겹치지 않도록
+   엠블럼을 조금 위로 올리고, 반응형별 간격을 다시 확보한다. */
+.emblem-wrap{
+  top:9.5%!important;
+  width:138px!important;
+  height:138px!important;
+}
+
+.edition{
+  top:31.5%!important;
+}
+
+/* hover 확대 후에도 아래 문구와 간격 유지 */
+.cover:hover .emblem-wrap .emblem{
+  transform:scale(1.075)!important;
+}
+
+/* 낮은 PC 창 */
+@media (max-height:820px) and (min-width:801px){
+  .emblem-wrap{
+    top:7.5%!important;
+    width:112px!important;
+    height:112px!important;
+  }
+  .edition{
+    top:29.5%!important;
+  }
+}
+
+/* 모바일 */
+@media(max-width:800px){
+  .emblem-wrap{
+    top:10.5%!important;
+    width:100px!important;
+    height:100px!important;
+  }
+  .edition{
+    top:29.5%!important;
+  }
+}
+
+
+/* ===== MORETTI OFFICIAL ARTBOOK · FINAL VIEWPORT FIT ===== */
+@media (min-width:901px){
+  html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden!important;
+  }
+  body.moretti-final-fit main{
+    position:absolute!important;
+    left:50%!important;
+    top:var(--moretti-fit-top,56px)!important;
+    transform:translateX(-50%) scale(var(--moretti-page-scale,1))!important;
+    transform-origin:top center!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+}
+
+
+/* ===== INDEX · COMPACT TABLE OF CONTENTS ===== */
+@media (min-width:901px){
+  .contents{
+    min-height:auto!important;
+    padding:28px 24px 34px!important;
+  }
+  .contents-inner{
+    width:min(1180px,100%)!important;
+  }
+  .contents-head{
+    grid-template-columns:.68fr 1.32fr!important;
+    gap:26px!important;
+    padding-bottom:18px!important;
+  }
+  .contents-head h2{
+    font-size:clamp(34px,4vw,58px)!important;
+  }
+  .contents-copy{
+    font-size:16px!important;
+    line-height:1.55!important;
+  }
+  .chapters{
+    gap:10px!important;
+    margin-top:18px!important;
+  }
+  .chapter{
+    min-height:132px!important;
+    padding:18px 22px!important;
+  }
+  .chapter h3{
+    margin:8px 0 5px!important;
+    font-size:clamp(21px,2.35vw,31px)!important;
+  }
+  .chapter p{
+    font-size:9.5px!important;
+    line-height:1.55!important;
+  }
+  .chapter .no,
+  .no{
+    font-size:7px!important;
+  }
+  .archive{
+    min-height:70px!important;
+    padding:16px 20px!important;
+  }
+}
+
+
+
+
+
+/* ===== INDEX CONTENTS · GOLD DUST CANVAS · FINAL =====
+   Canvas is deliberately stacked ABOVE the page background and BELOW the TOC,
+   so particles are actually visible while never covering cards/text. */
+.gold-dust-canvas{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  z-index:8;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 1.15s ease;
+}
+body.index-toc-open .gold-dust-canvas{
+  opacity:1;
+}
+.cover-shell{
+  position:relative;
+  z-index:12!important;
+}
+.contents{
+  position:relative;
+  z-index:9!important;
+  background:transparent!important;
+}
+.contents-inner{
+  position:relative;
+  z-index:10!important;
+}
+.sound-toggle{
+  z-index:30!important;
+}
+
+
+/* ===== INDEX CONTENTS · SUBTLE EMBOSSED GOLD TYPE ===== */
+/* Only the main index lettering is raised; descriptions/cards/background stay unchanged. */
+.contents-head .no{
+  font-weight:700!important;
+  color:#a98b58!important;
+  text-shadow:
+    0 1px 0 rgba(255,236,184,.15),
+    0 2px 3px rgba(0,0,0,.72);
+}
+.contents-head h2{
+  font-weight:700!important;
+  color:#e7c574!important;
+  text-shadow:
+    0 1px 0 rgba(255,242,196,.40),
+    0 2px 0 rgba(149,103,35,.34),
+    0 4px 7px rgba(0,0,0,.68);
+}
+.chapter h3{
+  font-weight:700!important;
+  color:#e0bd70!important;
+  text-shadow:
+    0 1px 0 rgba(255,239,188,.30),
+    0 2px 0 rgba(122,84,28,.30),
+    0 3px 5px rgba(0,0,0,.60);
+}
+.archive strong{
+  font-weight:700!important;
+  color:#e5c16f!important;
+  text-shadow:
+    0 1px 0 rgba(255,239,188,.28),
+    0 2px 0 rgba(122,84,28,.28),
+    0 3px 5px rgba(0,0,0,.58);
+}
+
+
+/* ===== INDEX COVER · BLACK LEATHER · SAFE CSS-ONLY VERSION =====
+   No DOM overlays. Existing emblem/text coordinates remain untouched. */
+.cover{
+  background:
+    /* very soft reflected light */
+    radial-gradient(900px 360px at 50% 8%, rgba(255,236,182,.055), transparent 58%),
+    radial-gradient(720px 520px at 82% 38%, rgba(180,138,72,.030), transparent 66%),
+
+    /* fine leather pores */
+    radial-gradient(circle at 14% 22%, rgba(255,255,255,.035) 0 .75px, transparent .95px) 0 0 / 17px 19px,
+    radial-gradient(circle at 72% 63%, rgba(255,255,255,.022) 0 .65px, transparent .9px) 0 0 / 23px 21px,
+    radial-gradient(circle at 40% 76%, rgba(0,0,0,.18) 0 .8px, transparent 1.05px) 0 0 / 19px 24px,
+
+    /* subtle hide grain */
+    repeating-linear-gradient(116deg,
+      rgba(255,255,255,.010) 0 1px,
+      transparent 1px 6px),
+    repeating-linear-gradient(24deg,
+      rgba(0,0,0,.055) 0 1px,
+      transparent 1px 8px),
+
+    /* black leather base */
+    linear-gradient(135deg,#171513 0%,#0b0a09 46%,#050505 100%) !important;
+
+  border:1px solid rgba(157,115,52,.40) !important;
+  border-radius:10px !important;
+  box-shadow:
+    0 55px 120px rgba(0,0,0,.72),
+    inset 0 1px 0 rgba(255,239,195,.035),
+    inset 0 0 0 8px #070706,
+    inset 0 0 0 9px rgba(211,164,76,.18),
+    inset 0 0 70px rgba(0,0,0,.34),
+    inset 18px 0 32px rgba(0,0,0,.24),
+    inset -18px 0 32px rgba(0,0,0,.18) !important;
+}
+
+/* Give just the left edge a book-binding impression, without adding elements. */
+.cover{
+  background-blend-mode:
+    screen,screen,
+    soft-light,soft-light,multiply,
+    soft-light,multiply,
+    normal;
+}
+
+/* Keep the original gold double-line frame exactly where it was. */
+.cover:before{
+  inset:28px !important;
+  border:1px solid rgba(224,183,96,.40) !important;
+}
+.cover:after{
+  inset:41px !important;
+  border:1px solid rgba(224,183,96,.12) !important;
+}
+
+</style>
+</head>
+<body>
+
+<canvas class="gold-dust-canvas" id="goldDustCanvas" aria-hidden="true"></canvas>
+
+<button class="sound-toggle" id="soundToggle" type="button"
+        aria-label="효과음 켜기 또는 끄기" aria-pressed="true" title="Sound on">🔊</button>
+<script src="js/audio.js"></script>
+<section class="cover-shell" id="coverShell">
+<button aria-label="모레티 공식 아트북 열기" class="cover" id="openCover" type="button">
+<span class="kicker">MORETTI FAMILY · OFFICIAL ARCHIVE</span>
+<span class="emblem-wrap" aria-hidden="true">
+<img alt="Moretti Family emblem" class="emblem" referrerpolicy="no-referrer" src="assets/images/moretti-family-emblem.png"/>
+<span class="emblem-shine"></span>
+</span>
+<span class="edition">COLLECTOR'S EDITION · OFFICIAL ARTBOOK</span>
+<h1>MORETTI<br/>OFFICIAL<br/>ARTBOOK</h1>
+<span class="sub">BLACK × GOLD · CONFIDENTIAL ARCHIVE</span>
+<span class="motto">“Silenzio · Onore · Potere.”</span>
+<span class="hint">CLICK THE COVER TO ENTER</span>
+</button>
+</section>
+<section class="contents" id="contents">
+<div class="contents-inner">
+<div class="contents-head">
+<div>
+<span class="no">COLLECTOR'S EDITION · INDEX</span>
+<h2>CONTENTS</h2>
+</div>
+<div class="contents-copy">A private web edition of the Moretti world — portrait archive, inner circle personnel album, official family dossier, residence records and classified documents.</div>
+</div>
+<div class="chapters">
+<a class="chapter" href="dante.html"><span class="no">CHAPTER I</span><h3>DANTE</h3><p>Character dossier · quotations · official portrait collection.</p></a>
+<a class="chapter" href="pillars.html"><span class="no">CHAPTER II</span><h3>THE SEVEN PILLARS</h3><p>Black leather personnel album · command structure · seven official records.</p></a>
+<a class="chapter" href="family.html"><span class="no">CHAPTER III</span><h3>MORETTI FAMILY</h3><p>Family dossier · crest · official record · philosophy and legacy.</p></a>
+<a class="chapter" href="mansion.html"><span class="no">CHAPTER IV</span><h3>MORETTI MANSION</h3><p>Residence album · fourteen architectural records.</p></a>
+<a class="chapter" href="classified.html"><span class="no">CHAPTER V</span><h3>CLASSIFIED</h3><p>Security terminal · encrypted records · Level Ω archive.</p></a>
+<a class="chapter" href="letter.html"><span class="no">CHAPTER VI</span><h3>SEALED LETTER</h3><p>Black envelope · Moretti wax seal · final confidential letter.</p></a>
+<a class="chapter archive" href="https://drive.google.com/file/d/1KPtaasyuG1a4rPSy5iMXDtZoOibZ9etT/view?usp=sharing" rel="noopener" target="_blank"><div><span>SUPPLEMENT · OFFICIAL DOCUMENT</span><strong>OFFICIAL ARCHIVE PDF</strong></div><span>OPEN DOCUMENT →</span></a>
+</div>
+<div class="footer">MORETTI OFFICIAL ARTBOOK · COLLECTOR'S EDITION · WEB ARCHIVE</div>
+</div>
+</section>
+<script>
+const cover=document.querySelector('#coverShell');
+const contents=document.querySelector('#contents');
+document.querySelector('#openCover').addEventListener('click',()=>{
+  if(window.AudioManager){
+    AudioManager.configure({basePath:'assets/sounds/'});
+    AudioManager.unlock();
+    AudioManager.openBook();
+  }
+  cover.animate([{opacity:1,transform:'scale(1)'},{opacity:0,transform:'scale(1.015)'}],{duration:650,easing:'ease',fill:'forwards'});
+  setTimeout(()=>{cover.style.display='none';contents.classList.add('show');document.body.classList.add('index-toc-open');requestAnimationFrame(()=>contents.style.opacity='1');scrollTo(0,0)},620);
+});
+</script>
+
+<script>
+(() => {
+  const A = window.AudioManager;
+  if(!A) return;
+
+  A.bindMuteButton('#soundToggle');
+
+  const unlockOnce = () => A.unlock();
+  document.addEventListener('pointerdown', unlockOnce, {once:true, capture:true});
+  document.addEventListener('keydown', unlockOnce, {once:true, capture:true});
+
+  const cover =
+    document.querySelector('.cover') ||
+    document.querySelector('.hero') ||
+    document.querySelector('[data-cover]') ||
+    document.querySelector('main');
+
+  let coverOpened = false;
+
+  if(cover){
+    cover.addEventListener('click', e => {
+      // Do not steal sound from direct nav/card links.
+      if(e.target.closest('a,button') && !e.target.closest('#soundToggle')) return;
+      if(coverOpened) return;
+      coverOpened = true;
+      A.openBook();
+    }, {capture:true});
+  }
+
+  // If the index uses chapter cards immediately, give only the first chapter-card
+  // navigation a subtle opening sound (not repeated on every card).
+  document.querySelectorAll('.chapter[href], .chapters a').forEach(link => {
+    link.addEventListener('click', () => {
+      A.unlock();
+      if(!coverOpened){
+        coverOpened = true;
+        A.openBook();
+      }
+    }, {capture:true});
+  });
+})();
+</script>
+
+
+
+
+
+<script>
+(() => {
+  const canvas = document.getElementById('goldDustCanvas');
+  if(!canvas) return;
+
+  const ctx = canvas.getContext('2d', { alpha:true });
+  const reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let w = 0, h = 0, dpr = 1;
+  let particles = [];
+  let raf = 0;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    buildParticles();
+  }
+
+  function makeParticle(i){
+    const mobile = w < 800;
+    const r = mobile ? 0.75 + Math.random()*1.15 : 0.85 + Math.random()*1.45;
+    return {
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r,
+      speed: 0.035 + Math.random()*0.085,
+      sway: 8 + Math.random()*24,
+      phase: Math.random()*Math.PI*2,
+      alpha: 0.28 + Math.random()*0.42,
+      twinkle: 0.0016 + Math.random()*0.0032,
+      seed: Math.random()*1000
+    };
+  }
+
+  function buildParticles(){
+    const count = w < 800 ? 30 : 54;
+    particles = Array.from({length:count}, (_,i) => makeParticle(i));
+  }
+
+  function drawParticle(p, t){
+    const swayX = Math.sin(t*0.00020 + p.phase) * p.sway;
+
+    /* Strong sparkle is intentionally removed.
+       Brightness now changes very slowly, like suspended gold dust breathing. */
+    const breathe = 0.82 + 0.18*Math.sin(t*0.00055 + p.seed);
+    const a = Math.max(0.12, p.alpha * breathe);
+
+    const cx = p.x + swayX;
+    const cy = p.y;
+    const halo = p.r * 6.5;
+
+    /* Soft radial halo: bright tiny core -> diffuse warm-gold haze. */
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, halo);
+    g.addColorStop(0, `rgba(255,236,177,${Math.min(.78,a*1.18)})`);
+    g.addColorStop(.16, `rgba(238,203,124,${Math.min(.58,a*.92)})`);
+    g.addColorStop(.48, `rgba(211,164,76,${Math.min(.24,a*.42)})`);
+    g.addColorStop(1, 'rgba(184,138,61,0)');
+
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(cx, cy, halo, 0, Math.PI*2);
+    ctx.fill();
+
+    /* Keep only a very small luminous center so it still reads as dust,
+       not a large glowing orb. */
+    ctx.beginPath();
+    ctx.arc(cx, cy, Math.max(.45, p.r*.46), 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255,232,165,${Math.min(.62,a*.86)})`;
+    ctx.fill();
+  }
+
+  function frame(t){
+    ctx.clearRect(0,0,w,h);
+
+    for(const p of particles){
+      if(!reduceMotion){
+        p.y -= p.speed;
+        if(p.y < -12){
+          p.y = h + 12;
+          p.x = Math.random()*w;
+        }
+      }
+      drawParticle(p,t);
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+  raf = requestAnimationFrame(frame);
+})();
+</script>
+
+<script src="js/final-fit.js"></script>
+</body>
+</html>

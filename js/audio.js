@@ -68,16 +68,16 @@
   async function unlock(){
     if (unlocked) return true;
     unlocked = true;
-    const all = Object.keys(config.sounds).map(clip).filter(Boolean);
-    for (const a of all){
-      try{
-        a.muted = true;
-        const p = a.play();
-        if (p && p.then) await p.catch(()=>{});
-        a.pause();
-        a.currentTime = 0;
-        a.muted = muted;
-      }catch(_){}
+
+    // Prime the audio files without playing or pausing the live clip objects.
+    // The previous unlock routine briefly played the same clips used by the UI,
+    // which could race with a real click-triggered sound on hosted pages and
+    // immediately pause it. Preloading only avoids that race while keeping the
+    // public AudioManager API unchanged.
+    for (const name of Object.keys(config.sounds)){
+      const a = clip(name);
+      if (!a) continue;
+      try { a.load(); } catch(_){}
     }
     return true;
   }

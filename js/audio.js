@@ -16,7 +16,7 @@
       typewriter:    { file:'typewriter.wav',     volume:.10, overlap:false, loop:true },
       quoteTyping:   { file:'typewriter.wav',     volume:.16, overlap:false, loop:true },
       letterPaper:   { file:'letter-paper.wav',   volume:.16, overlap:false },
-      stamp:         { file:'stamp.mp3',          volume:.52, overlap:false }
+      stamp:         { file:'stamp.mp3',           volume:.52, overlap:false }
     }
   };
 
@@ -28,8 +28,14 @@
 
   try {
     muted = localStorage.getItem(DEFAULTS.mutedStorageKey) === '1';
-    const savedVol = Number(localStorage.getItem(DEFAULTS.volumeStorageKey));
-    if (Number.isFinite(savedVol)) masterVolume = Math.max(0, Math.min(1, savedVol));
+
+    const rawVol = localStorage.getItem(DEFAULTS.volumeStorageKey);
+    if (rawVol !== null) {
+      const savedVol = Number(rawVol);
+      if (Number.isFinite(savedVol)) {
+        masterVolume = Math.max(0, Math.min(1, savedVol));
+      }
+    }
   } catch (_) {}
 
   function joinPath(base, file){
